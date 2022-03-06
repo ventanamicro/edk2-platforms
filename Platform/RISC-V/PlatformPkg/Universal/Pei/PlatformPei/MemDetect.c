@@ -45,12 +45,8 @@ PublishPeiMemory (
   EFI_PHYSICAL_ADDRESS  MemoryBase;
   UINT64                MemorySize;
 
-  //
-  // TODO: This value should come from platform
-  // configuration or the memory sizing code.
-  //
-  MemoryBase = 0x80000000UL + 0x1000000UL;
-  MemorySize = 0x40000000UL - 0x1000000UL; // 1GB - 16MB
+  MemoryBase = PcdGet64(PcdSystemMemoryBase) + 0x1000000UL;
+  MemorySize = PcdGet64(PcdSystemMemorySize) - 0x1000000UL; //1GB - 16MB
 
   DEBUG ((DEBUG_INFO, "%a: MemoryBase:0x%x MemorySize:%x\n", __FUNCTION__, MemoryBase, MemorySize));
 
@@ -72,9 +68,9 @@ InitializeRamRegions (
   VOID
   )
 {
-  //
-  // TODO: This value should come from platform
-  // configuration or the memory sizing code.
-  //
-  AddMemoryRangeHob (0x81000000UL, 0x81000000UL + 0x3F000000UL);
+  UINT64 Start, End;
+
+  Start = PcdGet64(PcdSystemMemoryBase) + 0x1000000UL;
+  End = Start + (PcdGet64(PcdSystemMemorySize) - 0x1000000UL);
+  AddMemoryRangeHob(Start, End);
 }

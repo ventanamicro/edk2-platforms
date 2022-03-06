@@ -445,7 +445,10 @@
       PcdLib|MdePkg/Library/PeiPcdLib/PeiPcdLib.inf
   }
 
-  Platform/RISC-V/PlatformPkg/Universal/FdtPeim/FdtPeim.inf
+  Platform/RISC-V/PlatformPkg/Universal/FdtPeim/FdtPeim.inf {
+    <LibraryClasses>
+      PcdLib|MdePkg/Library/PeiPcdLib/PeiPcdLib.inf
+  }
 
   #
   # DXE Phase modules

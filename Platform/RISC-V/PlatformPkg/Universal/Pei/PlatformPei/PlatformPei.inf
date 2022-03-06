@@ -58,6 +58,8 @@
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdRiscVDxeFvSize
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdTemporaryRamBase
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdTemporaryRamSize
+  gUefiRiscVPlatformPkgTokenSpaceGuid.PcdSystemMemoryBase
+  gUefiRiscVPlatformPkgTokenSpaceGuid.PcdSystemMemorySize
 
 [Ppis]
   gEfiPeiMasterBootModePpiGuid

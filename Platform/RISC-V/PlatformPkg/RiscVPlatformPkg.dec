@@ -72,6 +72,7 @@
 # as {0x1, 0x2, 0x3}.
 #
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdBootableHartIndexToId|NULL|VOID*|0x00001086
+  gUefiRiscVPlatformPkgTokenSpaceGuid.PcdEdk2InSMode|0|UINT32|0x00001087
 #
 # Definitions for OpenSbi
 #
@@ -88,7 +89,11 @@
 
 [PcdsFeatureFlag]
 
-[PcdsFixedAtBuild, PcdsPatchableInModule, PcdsDynamic, PcdsDynamicEx]
+[PcdsDynamic]
+  gUefiRiscVPlatformPkgTokenSpaceGuid.PcdSystemMemorySize|0x40000000|UINT64|0x00001300
+  gUefiRiscVPlatformPkgTokenSpaceGuid.PcdSystemMemoryBase|0x80000000|UINT64|0x00001301
+
+[PcdsFixedAtBuild, PcdsPatchableInModule, PcdsDynamicEx]
 
 [UserExtensions.TianoCore."ExtraFiles"]
   RiscVPlatformPkgExtra.uni

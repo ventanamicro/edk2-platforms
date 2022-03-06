@@ -31,6 +31,7 @@
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   Silicon/RISC-V/ProcessorPkg/RiscVProcessorPkg.dec
+  Platform/RISC-V/PlatformPkg/RiscVPlatformPkg.dec
 
 [LibraryClasses]
   DebugLib
@@ -41,6 +42,10 @@
 
 [Guids]
   gFdtHobGuid   ## PRODUCES
+
+[Pcd]
+  gUefiRiscVPlatformPkgTokenSpaceGuid.PcdSystemMemoryBase
+  gUefiRiscVPlatformPkgTokenSpaceGuid.PcdSystemMemorySize
 
 [Depex]
   TRUE
