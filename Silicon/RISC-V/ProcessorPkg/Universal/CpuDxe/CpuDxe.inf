@@ -20,6 +20,7 @@
   MdeModulePkg/MdeModulePkg.dec
   MdePkg/MdePkg.dec
   Silicon/RISC-V/ProcessorPkg/RiscVProcessorPkg.dec
+  Platform/RISC-V/PlatformPkg/RiscVPlatformPkg.dec
 
 [LibraryClasses]
   BaseLib
@@ -31,6 +32,7 @@
   TimerLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
+  RiscVFirmwareContextLib
 
 [Sources]
   CpuDxe.c
@@ -38,6 +40,7 @@
 
 [Protocols]
   gEfiCpuArchProtocolGuid                       ## PRODUCES
+  gUefiRiscVBootProtocolGuid                    ## PRODUCES
 
 [Pcd]
   gUefiRiscVPkgTokenSpaceGuid.PcdRiscVMachineTimerFrequencyInHerz

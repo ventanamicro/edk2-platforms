@@ -7,6 +7,9 @@
 
 **/
 
+#include <Library/BaseMemoryLib.h>
+#include <RiscVImpl.h>
+#include <Library/RiscVFirmwareContextLib.h>
 #include "CpuDxe.h"
 
 //
@@ -14,6 +17,27 @@
 //
 STATIC BOOLEAN     mInterruptState = FALSE;
 STATIC EFI_HANDLE  mCpuHandle      = NULL;
+STATIC UINTN mBootHartId;
+
+EFI_STATUS
+EFIAPI
+RiscvGetBootHartId (
+  IN RISCV_EFI_BOOT_PROTOCOL   *This,
+  OUT UINTN                    *BootHartId
+  )
+{
+  if((This == NULL) || (BootHartId == NULL)) {
+    return EFI_INVALID_PARAMETER;
+  }
+
+  *BootHartId = mBootHartId;
+  return EFI_SUCCESS;
+}
+
+RISCV_EFI_BOOT_PROTOCOL  gRiscvBootProtocol = {
+  RISCV_EFI_BOOT_PROTOCOL_LATEST_VERSION,
+  RiscvGetBootHartId
+};
 
 EFI_CPU_ARCH_PROTOCOL  gCpu = {
   CpuFlushCpuDataCache,
@@ -285,6 +309,18 @@ InitializeCpu (
   )
 {
   EFI_STATUS  Status;
+  EFI_RISCV_OPENSBI_FIRMWARE_CONTEXT *FirmwareContext;
+
+  GetFirmwareContextPointer (&FirmwareContext);
+  ASSERT (FirmwareContext != NULL);
+  if (FirmwareContext == NULL) {
+    DEBUG ((DEBUG_ERROR, "Failed to get the pointer of EFI_RISCV_OPENSBI_FIRMWARE_CONTEXT\n"));
+    return EFI_NOT_FOUND;
+  }
+  DEBUG ((DEBUG_INFO, " %a: Firmware Context is at 0x%x.\n", __FUNCTION__, FirmwareContext));
+
+  mBootHartId = FirmwareContext->BootHartId;
+  DEBUG ((DEBUG_INFO, " %a: mBootHartId = 0x%x.\n", __FUNCTION__, mBootHartId));
 
   //
   // Machine mode handler is initiated in CpuExceptionHandlerLibConstructor in
@@ -296,6 +332,13 @@ InitializeCpu (
   //
   DisableInterrupts ();
 
+  Status = gBS->InstallProtocolInterface (&ImageHandle,
+				          &gUefiRiscVBootProtocolGuid,
+					  EFI_NATIVE_INTERFACE,
+					  &gRiscvBootProtocol
+					 );
+
+  ASSERT_EFI_ERROR (Status);
   //
   // Install CPU Architectural Protocol
   //
