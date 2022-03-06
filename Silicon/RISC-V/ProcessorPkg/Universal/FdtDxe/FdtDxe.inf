@@ -26,7 +26,7 @@
   MdeModulePkg/MdeModulePkg.dec
   MdePkg/MdePkg.dec
   Platform/RISC-V/PlatformPkg/RiscVPlatformPkg.dec
-  EmbeddedPkg/EmbeddedPkg.dec
+  OvmfPkg/OvmfPkg.dec
 
 [LibraryClasses]
   BaseLib
@@ -38,6 +38,7 @@
   RiscVCpuLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
+  QemuFwCfgLib
 
 [Sources]
   FdtDxe.c

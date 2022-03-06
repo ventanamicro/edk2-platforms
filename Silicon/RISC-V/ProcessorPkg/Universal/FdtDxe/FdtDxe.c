@@ -17,6 +17,7 @@
 #include <Library/BaseMemoryLib.h>
 #include <Library/PcdLib.h>
 #include <libfdt.h>
+#include <Library/QemuFwCfgLib.h>
 
 /**
   Fix up the device tree with booting hartid for the kernel
@@ -126,9 +127,17 @@ InstallFdt (
   IN EFI_SYSTEM_TABLE  *SystemTable
   )
 {
-  EFI_STATUS  Status;
+  EFI_STATUS  Status = EFI_SUCCESS;
+  UINTN FwCfgSize;
+  FIRMWARE_CONFIG_ITEM FwCfgItem;
 
-  Status = InstallFdtFromHob ();
-
+  if (EFI_ERROR (
+	     QemuFwCfgFindFile (
+	        "etc/table-loader",
+		&FwCfgItem,
+		&FwCfgSize
+		))) {
+    Status = InstallFdtFromHob ();
+  }
   return Status;
 }
