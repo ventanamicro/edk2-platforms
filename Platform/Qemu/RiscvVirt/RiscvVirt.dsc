@@ -385,6 +385,8 @@
   #gEfiMdeModulePkgTokenSpaceGuid.PcdSerialClockRate|200000000
   # ACPI
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiExposedTableVersions|0x20
+  # SMBIOS - prevent 32bit table installation
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSmbiosEntryPointProvideMethod|0x2
 
 ################################################################################
 #
@@ -548,7 +550,11 @@
   #
   # SMBIOS Support
   #
-  MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
+  MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf {
+    <LibraryClasses>
+      NULL|OvmfPkg/Library/SmbiosVersionLib/DetectSmbiosVersionLib.inf
+  }
+  OvmfPkg/SmbiosPlatformDxe/SmbiosPlatformDxe.inf
 
   #
   # Network Support
