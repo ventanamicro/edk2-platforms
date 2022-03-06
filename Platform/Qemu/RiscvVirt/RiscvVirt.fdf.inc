@@ -17,7 +17,7 @@ DEFINE FW_BLOCKS         = 0x900
 # 0x000000-0x7DFFFF code
 # 0x7E0000-0x800000 variables
 #
-DEFINE CODE_BASE_ADDRESS = 0x80000000
+DEFINE CODE_BASE_ADDRESS = $(FW_BASE_ADDRESS)
 DEFINE CODE_SIZE         = 0x00800000
 DEFINE CODE_BLOCKS       = 0x800
 DEFINE VARS_BLOCKS       = 0x20
@@ -90,3 +90,9 @@ SET gUefiRiscVPkgTokenSpaceGuid.PcdRiscVMachineTimerFrequencyInHerz    = 1000000
 SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdHartCount                   = 1          # Total cores on U540 platform
 SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdBootHartId                  = 0          # Boot hart ID
 SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdPeiCorePrivilegeMode        = 1          # Set PeiCore to S-Mode
+
+!ifdef $(EDK2_PAYLOAD_OFFSET)
+  SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdEdk2InSMode                 = 1          # EDK2 in S-Mode
+!else
+  SET gUefiRiscVPlatformPkgTokenSpaceGuid.PcdEdk2InSMode                 = 0          # EDK2 in M-Mode
+!endif

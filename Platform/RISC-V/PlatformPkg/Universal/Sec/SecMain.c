@@ -493,6 +493,56 @@ PeiCore (
   sbi_init (Scratch);
 }
 
+VOID EFIAPI PeiCoreSMode (
+  IN  UINTN BootHartId,
+  IN  VOID *DeviceTreeAddress
+  )
+{
+  EFI_SEC_PEI_HAND_OFF        SecCoreData;
+  EFI_PEI_CORE_ENTRY_POINT    PeiCoreEntryPoint;
+  EFI_FIRMWARE_VOLUME_HEADER *BootFv = (EFI_FIRMWARE_VOLUME_HEADER *)FixedPcdGet32(PcdRiscVPeiFvBase);
+  EFI_RISCV_OPENSBI_FIRMWARE_CONTEXT FirmwareContext;
+
+  DEBUG ((DEBUG_INFO, "PeiCoreSMode: DeviceTreeAddress = 0x%p\n",
+	  DeviceTreeAddress));
+  DEBUG ((DEBUG_INFO, "PeiCoreSMode: BootHartId = %d\n", BootHartId));
+  FindAndReportEntryPoints (&BootFv, &PeiCoreEntryPoint);
+
+  SecCoreData.DataSize               = sizeof(EFI_SEC_PEI_HAND_OFF);
+  SecCoreData.BootFirmwareVolumeBase = BootFv;
+  SecCoreData.BootFirmwareVolumeSize = (UINTN) BootFv->FvLength;
+  SecCoreData.TemporaryRamBase       = (VOID*)(UINT64) FixedPcdGet32(PcdTemporaryRamBase);
+  SecCoreData.TemporaryRamSize       = (UINTN)  FixedPcdGet32(PcdTemporaryRamSize);
+  SecCoreData.PeiTemporaryRamBase    = SecCoreData.TemporaryRamBase;
+  SecCoreData.PeiTemporaryRamSize    = SecCoreData.TemporaryRamSize >> 1;
+  SecCoreData.StackBase              = (UINT8 *)SecCoreData.TemporaryRamBase + (SecCoreData.TemporaryRamSize >> 1);
+  SecCoreData.StackSize              = SecCoreData.TemporaryRamSize >> 1;
+
+  //
+  // Set up OpepSBI firmware context pointer on boot hart OpenSbi scratch.
+  // Firmware context residents in stack and will be switched to memory when
+  // temporary RAM migration.
+  //
+  ZeroMem ((VOID *)&FirmwareContext, sizeof (EFI_RISCV_OPENSBI_FIRMWARE_CONTEXT));
+
+  //
+  // Save Flattened Device tree in firmware context
+  //
+  FirmwareContext.FlattenedDeviceTree = (UINT64)DeviceTreeAddress;
+
+  FirmwareContext.SecPeiHandOffData = (UINT64)&SecCoreData;
+
+  //
+  // REVISIT: Set supervisor translation mode to Bare mode
+  //
+  DEBUG ((DEBUG_INFO, "%a: Set Supervisor address mode to Bare-mode.\n", __FUNCTION__));
+  RiscVSetSupervisorAddressTranslationRegister ((UINT64)RISCV_SATP_MODE_OFF << RISCV_SATP_MODE_BIT_POSITION);
+  //
+  // Transfer the control to the PEI core
+  //
+  PeiCoreEntryPoint((EFI_SEC_PEI_HAND_OFF *) BootHartId, (EFI_PEI_PPI_DESCRIPTOR *)&FirmwareContext);
+}
+
 /**
   Register firmware SBI extension and launch PeiCore to the mode specified in
   PcdPeiCorePrivilegeMode;

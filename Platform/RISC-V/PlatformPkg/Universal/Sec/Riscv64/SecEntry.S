@@ -29,6 +29,30 @@
     .globl _start_warm
 
 ASM_FUNC (_ModuleEntryPoint)
+  li    a5, FixedPcdGet32 (PcdEdk2InSMode)
+  beqz  a5, edk2_M_mode
+
+  /* Use Temp memory as the stack for calling to C code */
+  li    a4, FixedPcdGet32 (PcdTemporaryRamBase)
+  li    a5, FixedPcdGet32 (PcdTemporaryRamSize)
+  add   sp, a4, a5
+
+  /* opensbi will pass hartid in a0 and DTB in a1, save them */
+  add s0, a0, 0
+  add s1, a1, 0
+
+  /* Call library constructors before jup to SEC core */
+  call  ProcessLibraryConstructorList
+
+  /* Restore a0 and a1 before calling C */
+  add a0, s0, 0
+  add a1, s1, 0
+  call PeiCoreSMode
+
+  /* We do not expect to reach here hence just hang */
+  j     _start_hang
+
+edk2_M_mode:
   /*
    * Jump to warm-boot if this is not the selected core booting,
    */
