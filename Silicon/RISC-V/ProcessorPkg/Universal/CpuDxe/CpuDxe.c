@@ -18,6 +18,7 @@
 STATIC BOOLEAN     mInterruptState = FALSE;
 STATIC EFI_HANDLE  mCpuHandle      = NULL;
 STATIC UINTN mBootHartId;
+RISCV_EFI_BOOT_PROTOCOL gRiscvBootProtocol;
 
 EFI_STATUS
 EFIAPI
@@ -26,7 +27,7 @@ RiscvGetBootHartId (
   OUT UINTN                    *BootHartId
   )
 {
-  if((This == NULL) || (BootHartId == NULL)) {
+  if((This != &gRiscvBootProtocol) || (BootHartId == NULL)) {
     return EFI_INVALID_PARAMETER;
   }
 
