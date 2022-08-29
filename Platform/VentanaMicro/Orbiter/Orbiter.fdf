@@ -191,6 +191,11 @@ INF  ShellPkg/Application/Shell/Shell.inf
 #
 #INF  MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf
 
+#
+# Ramdisk for bring up. NOT UPSTREAM
+#
+INF  Platform/VentanaMicro/Orbiter/Drivers/RamDiskDxe/RamDiskDxe.inf
+
 ################################################################################
 
 [FV.FVMAIN_COMPACT]

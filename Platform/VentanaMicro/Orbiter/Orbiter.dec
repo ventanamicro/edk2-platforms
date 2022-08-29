@@ -34,5 +34,9 @@
   # Misc
   gOrbiterTokenSpaceGuid.PcdFdSize|0|UINT32|0x00002013
 
+  # Internal usage only. DO NOT UPSTREAM
+  gOrbiterTokenSpaceGuid.PcdFixedRamdiskBase|0|UINT64|0x00003001
+  gOrbiterTokenSpaceGuid.PcdFixedRamdiskSize|0|UINT32|0x00003002
+
 [UserExtensions.TianoCore."ExtraFiles"]
   Orbiter.uni

@@ -67,6 +67,10 @@
   # Use emulator variable for now
   gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable | TRUE
 
+  # Internal usage only. DO NOT UPSTREAM
+  gOrbiterTokenSpaceGuid.PcdFixedRamdiskBase | 0xD0000000
+  gOrbiterTokenSpaceGuid.PcdFixedRamdiskSize | 0x00600000
+
 ################################################################################
 #
 # Library Class section - list of all Library Classes needed by this Platform.
@@ -98,3 +102,6 @@
   Platform/VentanaMicro/Orbiter/AcpiTables/AcpiTables.inf
   Platform/VentanaMicro/Orbiter/Drivers/AcpiPlatformDxe/AcpiPlatformDxe.inf
   Platform/VentanaMicro/Orbiter/Drivers/SmbiosPlatformDxe/SmbiosPlatformDxe.inf
+
+  # Ramdisk for bring up. DO NOT UPSTREAM
+  Platform/VentanaMicro/Orbiter/Drivers/RamDiskDxe/RamDiskDxe.inf
