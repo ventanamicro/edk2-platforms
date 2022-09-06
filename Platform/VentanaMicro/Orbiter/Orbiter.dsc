@@ -82,6 +82,8 @@
 [LibraryClasses]
   # Need "Real" HW real time clock
   RealTimeClockLib|EmbeddedPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
+  # Enable during CIH
+  # RealTimeClockLib|Platform/VentanaMicro/Orbiter/Library/Pcf85063aRealTimeClockLib/Pcf85063aRealTimeClockLib.inf
 
   PlatformBootManagerLib|OvmfPkg/RiscVVirt/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
   PlatformBmPrintScLib|OvmfPkg/Library/PlatformBmPrintScLib/PlatformBmPrintScLib.inf
@@ -98,10 +100,20 @@
 #
 ################################################################################
 [Components]
+  #
   # RISC-V Platform Components
+  #
   Platform/VentanaMicro/Orbiter/AcpiTables/AcpiTables.inf
-  Platform/VentanaMicro/Orbiter/Drivers/AcpiPlatformDxe/AcpiPlatformDxe.inf
+  Platform/VentanaMicro/Orbiter/Drivers/PlatformDxe/PlatformDxe.inf
   Platform/VentanaMicro/Orbiter/Drivers/SmbiosPlatformDxe/SmbiosPlatformDxe.inf
 
+  #
   # Ramdisk for bring up. DO NOT UPSTREAM
+  #
   Platform/VentanaMicro/Orbiter/Drivers/RamDiskDxe/RamDiskDxe.inf
+
+  #
+  # Platfrom drivers
+  #
+  Platform/VentanaMicro/Orbiter/Drivers/PlatformDxe/PlatformDxe.inf
+  Platform/VentanaMicro/Orbiter/Drivers/I2cDxe/I2cDxe.inf

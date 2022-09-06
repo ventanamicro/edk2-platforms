@@ -1,0 +1,63 @@
+## @file
+#
+#  Component description file for the SynQuacer DXE platform driver.
+#
+#  Copyright (c) 2017, Linaro, Ltd. All rights reserved.<BR>
+#  Copyright (c) 2022, Ventana Micro Systems Inc. All Rights Reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x0001001A
+  BASE_NAME                      = PlatformDxe
+  FILE_GUID                      = 3b152e98-62ea-42ce-8573-ab077d2a0538
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PlatformDxeEntryPoint
+
+[Sources]
+  PlatformDxe.c
+
+[Packages]
+  EmbeddedPkg/EmbeddedPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  Platform/VentanaMicro/Orbiter/Orbiter.dec
+  Platform/VentanaMicro/Orbiter/Library/Pcf85063aRealTimeClockLib/Pcf85063aRealTimeClockLib.dec
+  Silicon/VentanaMicro/VentanaMicro.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  DevicePathLib
+  DxeServicesLib
+  IoLib
+  MemoryAllocationLib
+  NonDiscoverableDeviceRegistrationLib
+  PcdLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiLib
+  UefiRuntimeServicesTableLib
+  AcpiLib
+
+[Guids]
+  gEfiAcpiTableGuid
+  gEfiAcpi10TableGuid
+  gEfiEventReadyToBootGuid
+  gOrbiterNonDiscoverableRuntimeSysI2cMasterGuid
+
+[Protocols]
+  gEdkiiNonDiscoverableDeviceProtocolGuid         ## PRODUCES
+  gEfiAcpiTableProtocolGuid                       ## ALWAYS_CONSUMED
+  gPcf85063aRealTimeClockLibI2cMasterProtocolGuid ## ALWAYS_CONSUMED
+
+[FixedPcd]
+
+[Pcd]
+
+[Depex]
+  TRUE
