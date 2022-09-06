@@ -1,0 +1,55 @@
+#/** @file
+#
+#  Copyright (c) 2017, Linaro, Ltd. All rights reserved.<BR>
+#  Copyright (c) 2022, Ventana Micro Systems Inc. All Rights Reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#**/
+
+[Defines]
+  INF_VERSION                    = 0x0001001A
+  BASE_NAME                      = I2cDxe
+  FILE_GUID                      = 08867bbb-e4b1-4dc4-8461-9ae47acfd803
+  MODULE_TYPE                    = DXE_RUNTIME_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = I2cDxeEntryPoint
+  UNLOAD                         = I2cDxeUnload
+
+[Sources.common]
+  ComponentName.c
+  DriverBinding.c
+  I2cDxe.c
+  I2cDxe.h
+
+[Packages]
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  Platform/VentanaMicro/Orbiter/Orbiter.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  DebugLib
+  DevicePathLib
+  DxeServicesTableLib
+  IoLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiLib
+  UefiDriverEntryPoint
+  UefiRuntimeLib
+  TimerLib
+
+[Guids]
+  gEfiEventVirtualAddressChangeGuid
+  gOrbiterNonDiscoverableRuntimeSysI2cMasterGuid
+
+[Protocols]
+  gEdkiiNonDiscoverableDeviceProtocolGuid     ## TO_START
+  gEfiI2cMasterProtocolGuid                   ## BY_START
+
+[FixedPcd]
+  gOrbiterTokenSpaceGuid.PcdI2cReferenceClock
+
+[Depex]
+  BEFORE gOrbiterPlatformDxeGuid
