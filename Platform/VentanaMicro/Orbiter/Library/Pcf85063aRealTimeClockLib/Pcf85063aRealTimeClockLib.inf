@@ -1,0 +1,47 @@
+#/** @file
+#
+#  Copyright (c) 2017, Linaro, Ltd. All rights reserved.<BR>
+#  Copyright (c) 2022, Ventana Micro Systems Inc. All Rights Reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#
+#**/
+
+[Defines]
+  INF_VERSION                    = 0x0001001A
+  BASE_NAME                      = Pcf85063aRealTimeClockLib
+  FILE_GUID                      = bf79d84c-f2dd-465c-b557-0996ac3affd4
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = RealTimeClockLib
+
+[Sources.common]
+  Pcf85063aRealTimeClockLib.c
+
+[Packages]
+  EmbeddedPkg/EmbeddedPkg.dec
+  MdePkg/MdePkg.dec
+  Platform/VentanaMicro/Orbiter/Library/Pcf85063aRealTimeClockLib/Pcf85063aRealTimeClockLib.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  UefiBootServicesTableLib
+  UefiLib
+  UefiRuntimeLib
+
+[Guids]
+  gEfiEventVirtualAddressChangeGuid
+
+[Protocols]
+  gEfiI2cMasterProtocolGuid                         ## CONSUMES
+  gPcf85063aRealTimeClockLibI2cMasterProtocolGuid   ## CONSUMES
+
+[FixedPcd]
+  gPcf85063aRealTimeClockLibTokenSpaceGuid.PcdI2cSlaveAddress
+  gPcf85063aRealTimeClockLibTokenSpaceGuid.PcdI2cBusFrequency
+
+[Depex]
+  gPcf85063aRealTimeClockLibI2cMasterProtocolGuid
