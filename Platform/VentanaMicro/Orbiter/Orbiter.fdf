@@ -82,6 +82,7 @@ INF  RuleOverride=ACPITABLE Silicon/VentanaMicro/VT1/AcpiTables/AcpiTables.inf
 INF  Platform/VentanaMicro/Orbiter/Drivers/SmbiosPlatformDxe/SmbiosPlatformDxe.inf
 #INF  Platform/VentanaMicro/Orbiter/Drivers/I2cDxe/I2cDxe.inf
 INF  Platform/VentanaMicro/Orbiter/Drivers/PlatformDxe/PlatformDxe.inf
+#INF  Platform/VentanaMicro/Orbiter/Drivers/QspiDxe/QspiDxe.inf
 
 # RISC-V Core Drivers
 INF  UefiCpuPkg/CpuTimerDxeRiscV64/CpuTimerDxeRiscV64.inf
@@ -109,6 +110,8 @@ INF  MdeModulePkg/Bus/I2c/I2cDxe/I2cDxe.inf
 #
 INF  MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
 INF  MdeModulePkg/Universal/FaultTolerantWriteDxe/FaultTolerantWriteDxe.inf
+#INF Platform/VentanaMicro/Orbiter/Drivers/FlashFvbDxe/FlashFvbDxe.inf
+
 INF  MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
 
 INF  EmbeddedPkg/Drivers/FdtClientDxe/FdtClientDxe.inf

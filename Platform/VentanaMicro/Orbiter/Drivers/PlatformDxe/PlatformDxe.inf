@@ -49,6 +49,7 @@
   gEfiAcpi10TableGuid
   gEfiEventReadyToBootGuid
   gOrbiterNonDiscoverableRuntimeSysI2cMasterGuid
+  gOrbiterNonDiscoverableRuntimeSysQspiMasterGuid
 
 [Protocols]
   gEdkiiNonDiscoverableDeviceProtocolGuid         ## PRODUCES

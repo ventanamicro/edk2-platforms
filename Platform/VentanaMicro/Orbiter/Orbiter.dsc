@@ -117,3 +117,5 @@
   #
   Platform/VentanaMicro/Orbiter/Drivers/PlatformDxe/PlatformDxe.inf
   Platform/VentanaMicro/Orbiter/Drivers/I2cDxe/I2cDxe.inf
+  Platform/VentanaMicro/Orbiter/Drivers/QspiDxe/QspiDxe.inf
+  Platform/VentanaMicro/Orbiter/Drivers/FlashFvbDxe/FlashFvbDxe.inf

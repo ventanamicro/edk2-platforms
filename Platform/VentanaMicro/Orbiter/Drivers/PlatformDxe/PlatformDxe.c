@@ -34,6 +34,23 @@ STATIC EFI_ACPI_ADDRESS_SPACE_DESCRIPTOR mSysI2cDesc[] = {
   }
 };
 
+STATIC EFI_ACPI_ADDRESS_SPACE_DESCRIPTOR mSysQspiDesc[] = {
+  {
+    ACPI_ADDRESS_SPACE_DESCRIPTOR,                    // Desc
+    sizeof (EFI_ACPI_ADDRESS_SPACE_DESCRIPTOR) - 3,   // Len
+    ACPI_ADDRESS_SPACE_TYPE_MEM,                      // ResType
+    0,                                                // GenFlag
+    0,                                                // SpecificFlag
+    32,                                               // AddrSpaceGranularity
+    ORBITER_SYS_QSPI_BASE,                            // AddrRangeMin
+    ORBITER_SYS_QSPI_BASE + ORBITER_SYS_QSPI_SIZE - 1,// AddrRangeMax
+    0,                                                // AddrTranslationOffset
+    ORBITER_SYS_QSPI_BASE,                            // AddrLen
+  }, {
+    ACPI_END_TAG_DESCRIPTOR                           // Desc
+  }
+};
+
 STATIC
 EFI_STATUS
 RegisterDevice (
@@ -183,6 +200,14 @@ PlatformDxeEntryPoint (
   Handle = NULL;
   Status = RegisterDevice (&gOrbiterNonDiscoverableRuntimeSysI2cMasterGuid,
              mSysI2cDesc, &Handle);
+  ASSERT_EFI_ERROR (Status);
+
+  //
+  // Register Sys QSPI
+  //
+  Handle = NULL;
+  Status = RegisterDevice (&gOrbiterNonDiscoverableRuntimeSysQspiMasterGuid,
+             mSysQspiDesc, &Handle);
   ASSERT_EFI_ERROR (Status);
 
   //

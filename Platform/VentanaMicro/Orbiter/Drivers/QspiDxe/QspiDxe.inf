@@ -1,0 +1,65 @@
+#/** @file
+#
+#  Copyright (c) 2022, Ventana Micro Systems Inc. All Rights Reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#**/
+
+[Defines]
+  INF_VERSION                    = 0x0001001A
+  BASE_NAME                      = QspiDxe
+  FILE_GUID                      = 1f30998e-25c5-4d25-b737-c97f981326a2
+  MODULE_TYPE                    = DXE_RUNTIME_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = QspiDxeEntryPoint
+  UNLOAD                         = QspiDxeUnload
+
+[Sources.common]
+  ComponentName.c
+  DriverBinding.c
+  QspiDxe.c
+  QspiDxe.h
+  CadenceSpi.c
+  CadenceSpi.h
+
+[Packages]
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  Platform/VentanaMicro/Orbiter/Orbiter.dec
+  Silicon/VentanaMicro/VentanaMicro.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  DebugLib
+  DevicePathLib
+  DxeServicesTableLib
+  PcdLib
+  IoLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiLib
+  UefiDriverEntryPoint
+  UefiRuntimeLib
+
+[Guids]
+  gEfiEventVirtualAddressChangeGuid
+  gOrbiterNonDiscoverableRuntimeSysQspiMasterGuid
+
+[Protocols]
+  gEdkiiNonDiscoverableDeviceProtocolGuid     ## TO_START
+  gOrbiterSpiFlashProtocolGuid                ## BY_START
+
+[FixedPcd]
+  gOrbiterTokenSpaceGuid.PcdQspiReferenceClock
+  gOrbiterTokenSpaceGuid.PcdQspiDevClock
+  gOrbiterTokenSpaceGuid.PcdQspiBiosRegionBase
+  gOrbiterTokenSpaceGuid.PcdQspiBiosRegionSize
+  gOrbiterTokenSpaceGuid.PcdQspiNvRegionBase
+  gOrbiterTokenSpaceGuid.PcdQspiNvRegionSize
+  gOrbiterTokenSpaceGuid.PcdFlashPageSize
+  gOrbiterTokenSpaceGuid.PcdFlashSectorSize
+  gOrbiterTokenSpaceGuid.PcdFlashBankSize
+
+[Depex]
+  BEFORE gOrbiterPlatformDxeGuid
