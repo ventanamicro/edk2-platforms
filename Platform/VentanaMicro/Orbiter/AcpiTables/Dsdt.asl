@@ -12,6 +12,7 @@
 DefinitionBlock("", "DSDT", 1, "VETANA", "ORBITER ", EFI_ACPI_VENTANA_OEM_REVISION)
 {
   Include ("Cpu.asi")
+  Include ("Pcie.asi")
 
   Scope (\_SB)
   {

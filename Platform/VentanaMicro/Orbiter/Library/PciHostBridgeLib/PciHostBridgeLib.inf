@@ -1,0 +1,33 @@
+## @file
+#  An instance of PCI Host Bridge Library.
+#
+#  Copyright (c) 2016 - 2018, Intel Corporation. All rights reserved.<BR>
+#  Copyright (c) 2022, Ventana Micro Systems Inc. All Rights Reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PciHostBridgeLibNull
+  MODULE_UNI_FILE                = PciHostBridgeLibNull.uni
+  FILE_GUID                      = 5301A7E4-EF6D-4651-9E3B-277A5BA6BBA7
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PciHostBridgeLib
+
+[Sources]
+  PciHostBridgeLib.c
+
+[LibraryClasses]
+  BaseMemoryLib
+  DxeServicesTableLib
+  MemoryAllocationLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  Platform/VentanaMicro/Orbiter/Orbiter.dec
+  Silicon/VentanaMicro/VentanaMicro.dec

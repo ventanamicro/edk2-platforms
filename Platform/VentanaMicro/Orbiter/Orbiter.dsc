@@ -119,3 +119,14 @@
   Platform/VentanaMicro/Orbiter/Drivers/I2cDxe/I2cDxe.inf
   Platform/VentanaMicro/Orbiter/Drivers/QspiDxe/QspiDxe.inf
   Platform/VentanaMicro/Orbiter/Drivers/FlashFvbDxe/FlashFvbDxe.inf
+
+  #
+  # PCIe Support
+  #
+  MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf {
+    <LibraryClasses>
+      PciHostBridgeLib | Platform/VentanaMicro/Orbiter/Library/PciHostBridgeLib/PciHostBridgeLib.inf
+      PciSegmentLib | Platform/VentanaMicro/Orbiter/Library/PciSegmentLibPci/PciSegmentLib.inf
+
+  }
+  MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
