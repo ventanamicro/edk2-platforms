@@ -25,5 +25,6 @@
 [PcdsFixedAtBuild]
 
 [PcdsDynamic, PcdsDynamicEx]
+  gVentanaMicroSiliconTokenSpaceGuid.Limit32bitEfiApplication|TRUE|BOOLEAN|0x00001001
 
 [PcdsFeatureFlag]

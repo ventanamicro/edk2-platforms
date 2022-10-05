@@ -506,6 +506,11 @@
   Silicon/VentanaMicro/VT1/AcpiTables/AcpiTables.inf
 
   #
+  # Ventana Miscs
+  #
+  Silicon/VentanaMicro/VT1/Drivers/FixMemoryMap/FixMemoryMap.inf
+
+  #
   # SMBIOS Support
   #
   MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
