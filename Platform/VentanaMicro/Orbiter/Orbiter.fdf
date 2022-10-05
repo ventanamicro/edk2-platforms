@@ -202,6 +202,11 @@ INF  ShellPkg/Application/Shell/Shell.inf
 #
 INF  Platform/VentanaMicro/Orbiter/Drivers/RamDiskDxe/RamDiskDxe.inf
 
+#
+# Miscs
+#
+INF  Silicon/VentanaMicro/VT1/Drivers/FixMemoryMap/FixMemoryMap.inf
+
 ################################################################################
 
 [FV.FVMAIN_COMPACT]
