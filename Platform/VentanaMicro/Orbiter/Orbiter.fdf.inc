@@ -38,3 +38,4 @@ SET gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecPeiTempRamBase = 0x83FF0000
 SET gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecPeiTempRamSize = 0x00010000
 
 SET gOrbiterTokenSpaceGuid.PcdFdSize = $(FW_SIZE)
+SET gOrbiterTokenSpaceGuid.PcdFdBaseAddress = $(CODE_BASE_ADDRESS)

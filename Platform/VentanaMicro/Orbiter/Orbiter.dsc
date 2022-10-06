@@ -42,6 +42,11 @@
   DEFINE NETWORK_ISCSI_ENABLE     = FALSE
   DEFINE NETWORK_ALLOW_HTTP_CONNECTIONS = TRUE
 
+  #
+  # UPDATE/RECOVERY definition
+  #
+  DEFINE CAPSULE_ENABLE           = FALSE
+
 [BuildOptions]
   GCC:RELEASE_*_*_CC_FLAGS       = -DMDEPKG_NDEBUG
 !ifdef $(SOURCE_DEBUG_ENABLE)
@@ -71,6 +76,13 @@
   gOrbiterTokenSpaceGuid.PcdFixedRamdiskBase | 0xD0000000
   gOrbiterTokenSpaceGuid.PcdFixedRamdiskSize | 0x00600000
 
+[PcdsDynamicExDefault.common.DEFAULT]
+!if $(CAPSULE_ENABLE) == TRUE
+  gEfiSignedCapsulePkgTokenSpaceGuid.PcdEdkiiSystemFirmwareImageDescriptor|{0x0}|VOID*|0x100
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSystemFmpCapsuleImageTypeIdGuid|{0x48, 0x91, 0x23, 0xc7, 0xff, 0xe9, 0x49, 0x28, 0x83, 0x1d, 0x25, 0x98, 0x0c, 0xac, 0xd6, 0xe1}
+  gEfiSignedCapsulePkgTokenSpaceGuid.PcdEdkiiSystemFirmwareFileGuid|{0x67, 0x96, 0x4e, 0xa2, 0x63, 0x40, 0x4e, 0x34, 0x94, 0xe5, 0xfe, 0x91, 0xc8, 0x1c, 0x18, 0xc3}
+!endif
+
 ################################################################################
 #
 # Library Class section - list of all Library Classes needed by this Platform.
@@ -93,6 +105,27 @@
   QemuFwCfgLib|OvmfPkg/Library/QemuFwCfgLib/QemuFwCfgLibMmio.inf
   QemuFwCfgS3Lib|OvmfPkg/Library/QemuFwCfgS3Lib/BaseQemuFwCfgS3LibNull.inf
   QemuFwCfgSimpleParserLib|OvmfPkg/Library/QemuFwCfgSimpleParserLib/QemuFwCfgSimpleParserLib.inf
+
+!if $(CAPSULE_ENABLE) == TRUE
+  CapsuleLib|MdeModulePkg/Library/DxeCapsuleLibFmp/DxeCapsuleLib.inf
+  BmpSupportLib|MdeModulePkg/Library/BaseBmpSupportLib/BaseBmpSupportLib.inf
+  SafeIntLib|MdePkg/Library/BaseSafeIntLib/BaseSafeIntLib.inf
+  OpensslLib|CryptoPkg/Library/OpensslLib/OpensslLib.inf
+  IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
+  BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
+  CapsuleLib|MdeModulePkg/Library/DxeCapsuleLibFmp/DxeCapsuleLib.inf
+  EdkiiSystemCapsuleLib|SignedCapsulePkg/Library/EdkiiSystemCapsuleLib/EdkiiSystemCapsuleLib.inf
+  FmpAuthenticationLib|SecurityPkg/Library/FmpAuthenticationLibPkcs7/FmpAuthenticationLibPkcs7.inf
+  IniParsingLib|SignedCapsulePkg/Library/IniParsingLib/IniParsingLib.inf
+  PlatformFlashAccessLib|Platform/VentanaMicro/Orbiter/Capsule/Library/PlatformFlashAccessLib/PlatformFlashAccessLibDxe.inf
+  DisplayUpdateProgressLib|MdeModulePkg/Library/DisplayUpdateProgressLibText/DisplayUpdateProgressLibText.inf
+  RngLib|MdePkg/Library/DxeRngLib/DxeRngLib.inf
+!endif
+
+[LibraryClasses.common.DXE_RUNTIME_DRIVER]
+!if $(CAPSULE_ENABLE) == TRUE
+  CapsuleLib|MdeModulePkg/Library/DxeCapsuleLibFmp/DxeRuntimeCapsuleLib.inf
+!endif
 
 ################################################################################
 #
@@ -130,3 +163,22 @@
 
   }
   MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+
+!if $(CAPSULE_ENABLE) == TRUE
+  # FMP image decriptor
+  # Platform/VentanaMicro/Orbiter/Capsule/SystemFirmwareDescriptor/SystemFirmwareDescriptor.inf
+
+  MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
+  SignedCapsulePkg/Universal/SystemFirmwareUpdate/SystemFirmwareReportDxe.inf {
+    <LibraryClasses>
+      FmpAuthenticationLib|SecurityPkg/Library/FmpAuthenticationLibPkcs7/FmpAuthenticationLibPkcs7.inf
+  }
+  SignedCapsulePkg/Universal/SystemFirmwareUpdate/SystemFirmwareUpdateDxe.inf {
+    <LibraryClasses>
+      FmpAuthenticationLib|SecurityPkg/Library/FmpAuthenticationLibPkcs7/FmpAuthenticationLibPkcs7.inf
+  }
+  MdeModulePkg/Application/CapsuleApp/CapsuleApp.inf {
+    <LibraryClasses>
+      PcdLib|MdePkg/Library/DxePcdLib/DxePcdLib.inf
+  }
+!endif

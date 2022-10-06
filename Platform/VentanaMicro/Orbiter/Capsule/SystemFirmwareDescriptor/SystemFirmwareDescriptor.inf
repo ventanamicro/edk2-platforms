@@ -1,0 +1,44 @@
+## @file
+#  System Firmware descriptor.
+#
+#  Copyright (c) 2016, Intel Corporation. All rights reserved.<BR>
+#  Copyright (c) 2022, Ventana Micro Systems Inc. All Rights Reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x0001001A
+  BASE_NAME                      = SystemFirmwareDescriptor
+  FILE_GUID                      = 2BDF5D40-8EA1-4762-B779-DF3912EE956A
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = SystemFirmwareDescriptorPeimEntry
+
+[Sources]
+  SystemFirmwareDescriptorTable.aslc
+  SystemFirmwareDescriptorPei.c
+
+[Packages]
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  SignedCapsulePkg/SignedCapsulePkg.dec
+  Platform/VentanaMicro/Orbiter/Orbiter.dec
+
+[LibraryClasses]
+  DebugLib
+  PcdLib
+  PeimEntryPoint
+  PeiServicesLib
+
+[FixedPcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision
+  gEfiSignedCapsulePkgTokenSpaceGuid.PcdLowestSupportedFirmwareVersion
+  gOrbiterTokenSpaceGuid.PcdFdSize
+
+[Pcd]
+  gEfiSignedCapsulePkgTokenSpaceGuid.PcdEdkiiSystemFirmwareImageDescriptor
+
+[Depex]
+  TRUE

@@ -59,6 +59,7 @@
 
   # Misc
   gOrbiterTokenSpaceGuid.PcdFdSize|0|UINT32|0x00002013
+  gOrbiterTokenSpaceGuid.PcdFdBaseAddress|0|UINT64|0x00002014
 
   # Internal usage only. DO NOT UPSTREAM
   gOrbiterTokenSpaceGuid.PcdFixedRamdiskBase|0|UINT64|0x00003001
