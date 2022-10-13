@@ -34,7 +34,6 @@ QspiFlashRead (
   UINT32      RegionBase;
   UINT32      RegionSize;
   EFI_STATUS  Status;
-  INTN        Ret;
 
   if (!This) {
     return EFI_INVALID_PARAMETER;
@@ -51,11 +50,10 @@ QspiFlashRead (
     return EFI_INVALID_PARAMETER;
   }
 
-  Ret = CadQspiRead ((VOID *)Buffer, RegionBase + Address, ByteCount);
-  if (Ret) {
-    DEBUG ((DEBUG_ERROR, "%a: failed to read bytes from flash %d\n",
-        __FUNCTION__, Ret));
-    Status = EFI_DEVICE_ERROR;
+  Status = CdnsXspiRead ((VOID *)Buffer, RegionBase + Address, ByteCount);
+  if (EFI_ERROR (Status)) {
+    DEBUG ((DEBUG_ERROR, "%a: failed to read bytes from flash %r\n",
+        __FUNCTION__, Status));
   }
 
   return Status;
@@ -86,7 +84,6 @@ QspiFlashWrite (
   UINT32      RegionBase;
   UINT32      RegionSize;
   EFI_STATUS  Status;
-  INTN        Ret;
 
   if (!This) {
     return EFI_INVALID_PARAMETER;
@@ -103,11 +100,10 @@ QspiFlashWrite (
     return EFI_INVALID_PARAMETER;
   }
 
-  Ret = CadQspiUpdate ((VOID *)Buffer, RegionBase + Address, ByteCount);
-  if (Ret) {
-    DEBUG ((DEBUG_ERROR, "%a: failed to write bytes to flash %d\n",
-        __FUNCTION__, Ret));
-    Status = EFI_DEVICE_ERROR;
+  Status = CdnsXspiUpdate ((VOID *)Buffer, RegionBase + Address, ByteCount);
+  if (EFI_ERROR (Status)) {
+    DEBUG ((DEBUG_ERROR, "%a: failed to write bytes to flash %r\n",
+        __FUNCTION__, Status));
   }
 
   return Status;
@@ -136,7 +132,6 @@ QspiFlashErase (
   UINT32      RegionBase;
   UINT32      RegionSize;
   EFI_STATUS  Status;
-  INTN        Ret;
 
   if (!This) {
     return EFI_INVALID_PARAMETER;
@@ -153,11 +148,10 @@ QspiFlashErase (
     return EFI_INVALID_PARAMETER;
   }
 
-  Ret = CadQspiErase (RegionBase + Address, ByteCount);
-  if (Ret) {
-    DEBUG ((DEBUG_ERROR, "%a: failed to erase %d\n",
-        __FUNCTION__, Ret));
-    Status = EFI_DEVICE_ERROR;
+  Status = CdnsXspiErase (RegionBase + Address, ByteCount);
+  if (EFI_ERROR (Status)) {
+    DEBUG ((DEBUG_ERROR, "%a: failed to erase %r\n",
+        __FUNCTION__, Status));
   }
 
   return Status;
@@ -217,7 +211,7 @@ QspiVirtualNotifyEvent (
   EfiConvertPointer (0x0, (VOID **)&Qspi->SpiFlashProtocol.FlashWrite);
   EfiConvertPointer (0x0, (VOID **)&Qspi->SpiFlashProtocol.FlashErase);
   EfiConvertPointer (0x0, (VOID **)&Qspi->MmioBase);
-  CadQspiUpdateBaseAddress (Qspi->MmioBase);
+  CdnsXspiUpdateBaseAddress (Qspi->MmioBase);
 }
 
 EFI_STATUS
@@ -253,12 +247,11 @@ QspiInit (
   Qspi->SpiFlashProtocol.FlashErase          = QspiFlashErase;
   Qspi->SpiFlashProtocol.FlashGetRegion      = QspiFlashGetRegion;
   Qspi->MmioBase                             = Dev->Resources[0].AddrRangeMin;
+  Qspi->MmioSize                             = Dev->Resources[0].AddrLen;
   Qspi->Dev                                  = Dev;
 
   // Initialize SPi
-  if (CadQspiInit (Qspi->MmioBase, QSPI_CONFIG_CPHA, QSPI_CONFIG_CPOL,
-                        QSPI_CONFIG_CSDA, QSPI_CONFIG_CSDADS,
-                        QSPI_CONFIG_CSEOT, QSPI_CONFIG_CSSOT, 0) != 0) {
+  if (EFI_ERROR (CdnsXspiInit (Qspi->MmioBase))) {
     DEBUG ((DEBUG_ERROR, "%a: failed to initialize QSPI controller\n",
             __FUNCTION__));
     Status = EFI_DEVICE_ERROR;
@@ -268,8 +261,8 @@ QspiInit (
   // Declare the controller as EFI_MEMORY_RUNTIME
   Status = gDS->AddMemorySpace (
                   EfiGcdMemoryTypeMemoryMappedIo,
-                  Dev->Resources[0].AddrRangeMin,
-                  Dev->Resources[0].AddrLen,
+                  Qspi->MmioBase,
+                  Qspi->MmioSize,
                   EFI_MEMORY_UC | EFI_MEMORY_RUNTIME);
   if (EFI_ERROR (Status)) {
     DEBUG ((DEBUG_WARN, "%a: failed to add memory space - %r\n",
@@ -277,8 +270,8 @@ QspiInit (
   }
 
   Status = gDS->SetMemorySpaceAttributes (
-                  Dev->Resources[0].AddrRangeMin,
-                  Dev->Resources[0].AddrLen,
+                  Qspi->MmioBase,
+                  Qspi->MmioSize,
                   EFI_MEMORY_UC | EFI_MEMORY_RUNTIME);
   if (EFI_ERROR (Status)) {
     goto FreeDevice;

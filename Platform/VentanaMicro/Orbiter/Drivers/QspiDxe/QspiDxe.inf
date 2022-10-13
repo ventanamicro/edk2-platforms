@@ -20,8 +20,8 @@
   DriverBinding.c
   QspiDxe.c
   QspiDxe.h
-  CadenceSpi.c
-  CadenceSpi.h
+  CadenceXspi.c
+  CadenceXspi.h
 
 [Packages]
   MdeModulePkg/MdeModulePkg.dec
@@ -41,6 +41,7 @@
   UefiLib
   UefiDriverEntryPoint
   UefiRuntimeLib
+  TimerLib
 
 [Guids]
   gEfiEventVirtualAddressChangeGuid
@@ -51,15 +52,10 @@
   gOrbiterSpiFlashProtocolGuid                ## BY_START
 
 [FixedPcd]
-  gOrbiterTokenSpaceGuid.PcdQspiReferenceClock
-  gOrbiterTokenSpaceGuid.PcdQspiDevClock
   gOrbiterTokenSpaceGuid.PcdQspiBiosRegionBase
   gOrbiterTokenSpaceGuid.PcdQspiBiosRegionSize
   gOrbiterTokenSpaceGuid.PcdQspiNvRegionBase
   gOrbiterTokenSpaceGuid.PcdQspiNvRegionSize
-  gOrbiterTokenSpaceGuid.PcdFlashPageSize
-  gOrbiterTokenSpaceGuid.PcdFlashSectorSize
-  gOrbiterTokenSpaceGuid.PcdFlashBankSize
 
 [Depex]
   BEFORE gOrbiterPlatformDxeGuid

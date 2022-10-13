@@ -164,6 +164,11 @@
   }
   MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
 
+  #
+  # Ethernet driver
+  #
+  Platform/VentanaMicro/Orbiter/Drivers/GigUndiDxe/GigUndiDxe.inf
+
 !if $(CAPSULE_ENABLE) == TRUE
   # FMP image decriptor
   # Platform/VentanaMicro/Orbiter/Capsule/SystemFirmwareDescriptor/SystemFirmwareDescriptor.inf

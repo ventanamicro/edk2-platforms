@@ -26,7 +26,7 @@
 
 #include <Protocol/SpiFlash.h>
 #include <Protocol/NonDiscoverableDevice.h>
-#include "CadenceSpi.h"
+#include "CadenceXspi.h"
 
 extern EFI_COMPONENT_NAME2_PROTOCOL gQspiDriverComponentName2;
 extern EFI_DRIVER_BINDING_PROTOCOL  gQspiDriverBinding;
@@ -43,6 +43,7 @@ typedef struct {
   UINT32                          Signature;
   SPI_FLASH_PROTOCOL              SpiFlashProtocol;
   EFI_PHYSICAL_ADDRESS            MmioBase;
+  UINT64                          MmioSize;
   QSPI_DEVICE_PATH                DevicePath;
   NON_DISCOVERABLE_DEVICE         *Dev;
   EFI_EVENT                       VirtualAddressChangeEvent;

@@ -48,8 +48,6 @@
   gOrbiterTokenSpaceGuid.PcdQspiNvRegionBase|0|UINT32|0x00001006
   gOrbiterTokenSpaceGuid.PcdQspiNvRegionSize|0x1000000|UINT32|0x00001007
   gOrbiterTokenSpaceGuid.PcdFlashPageSize|0x100|UINT32|0x00001008
-  gOrbiterTokenSpaceGuid.PcdFlashSectorSize|0x1000|UINT32|0x00001009
-  gOrbiterTokenSpaceGuid.PcdFlashBankSize|0x1000000|UINT32|0x0000100A
 
 [PcdsFixedAtBuild, PcdsDynamic, PcdsDynamicEx]
   # Smbios
