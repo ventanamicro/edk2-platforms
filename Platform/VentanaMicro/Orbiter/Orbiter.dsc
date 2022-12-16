@@ -82,6 +82,10 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdSystemFmpCapsuleImageTypeIdGuid|{0x48, 0x91, 0x23, 0xc7, 0xff, 0xe9, 0x49, 0x28, 0x83, 0x1d, 0x25, 0x98, 0x0c, 0xac, 0xd6, 0xe1}
   gEfiSignedCapsulePkgTokenSpaceGuid.PcdEdkiiSystemFirmwareFileGuid|{0x67, 0x96, 0x4e, 0xa2, 0x63, 0x40, 0x4e, 0x34, 0x94, 0xe5, 0xfe, 0x91, 0xc8, 0x1c, 0x18, 0xc3}
 !endif
+  # set PcdPciExpressBaseAddress to MAX_UINT64, which signifies that this
+  # PCD and PcdPciDisableBusEnumeration above have not been assigned yet
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress|0xFFFFFFFFFFFFFFFF
+  gEfiMdePkgTokenSpaceGuid.PcdPciIoTranslation|0x0
 
 ################################################################################
 #
@@ -156,6 +160,10 @@
   #
   # PCIe Support
   #
+  OvmfPkg/RiscVVirt/PciCpuIo2Dxe/PciCpuIo2Dxe.inf {
+    <LibraryClasses>
+      NULL|OvmfPkg/Fdt/FdtPciPcdProducerLib/FdtPciPcdProducerLib.inf
+  }
   MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf {
     <LibraryClasses>
       PciHostBridgeLib | Platform/VentanaMicro/Orbiter/Library/PciHostBridgeLib/PciHostBridgeLib.inf
@@ -168,6 +176,9 @@
   # Ethernet driver
   #
   Platform/VentanaMicro/Orbiter/Drivers/GigUndiDxe/GigUndiDxe.inf
+
+  # X86Emulator
+  Silicon/VentanaMicro/X86EmulatorPkg/X86Emulator.inf
 
 !if $(CAPSULE_ENABLE) == TRUE
   # FMP image decriptor
