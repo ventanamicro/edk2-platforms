@@ -1,0 +1,38 @@
+## @file  U5SeriesPkg.dec
+# This Package provides modules and libraries.
+#
+# Copyright (c) 2022, Ventana Micro Systems Inc. All Rights Reserved.<BR>
+#
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x0001001b
+  PACKAGE_NAME                   = Orbiter
+  PACKAGE_UNI_FILE               = Orbiter.uni
+  PACKAGE_GUID                   = 072F447F-ADCE-4D30-895C-AE43080A843B
+  PACKAGE_VERSION                = 1.0
+
+[Includes]
+
+[LibraryClasses]
+
+[Guids]
+  gOrbiterTokenSpaceGuid  = {0xC80F968B, 0x81C4, 0x4CFD, { 0x9B, 0x11, 0x82, 0x8A, 0x3A, 0x2F, 0x80, 0x4F }}
+
+[PcdsFixedAtBuild]
+  #FIXME: ISS/QEMU value
+  gOrbiterTokenSpaceGuid.Uart16550Interrupt|10|UINT32|0x00001000
+
+[PcdsFixedAtBuild, PcdsDynamic, PcdsDynamicEx]
+  # Smbios
+  gOrbiterTokenSpaceGuid.PcdSmbiosTables1MajorVersion|0|UINT8|0x00002010
+  gOrbiterTokenSpaceGuid.PcdSmbiosTables1MinorVersion|0|UINT8|0x00002011
+  gOrbiterTokenSpaceGuid.PcdSmbiosTables0BiosReleaseDate|"MM/DD/YYYY"|VOID*|0x00002012 # Must follow this MM/DD/YYYY SMBIOS date format
+
+  # Misc
+  gOrbiterTokenSpaceGuid.PcdFdSize|0|UINT32|0x00002013
+
+[UserExtensions.TianoCore."ExtraFiles"]
+  Orbiter.uni
