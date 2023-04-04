@@ -9,7 +9,7 @@
 [Defines]
 DEFINE BLOCK_SIZE                  = 0x1000
 
-DEFINE FW_BASE_ADDRESS             = 0x80200000
+DEFINE FW_BASE_ADDRESS             = 0xC0200000
 DEFINE FW_SIZE                     = 0x00800000
 DEFINE FW_BLOCKS                   = 0x800
 
@@ -34,7 +34,7 @@ DEFINE VARS_FTW_SPARE_OFFSET         = $(VARS_FTW_WORKING_OFFSET) + $(VARS_FTW_W
 DEFINE VARS_FTW_SPARE_SIZE           = 0x00040000
 
 SET gUefiCpuPkgTokenSpaceGuid.PcdCpuCoreCrystalClockFrequency = 10000000
-SET gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecPeiTempRamBase = 0x83FF0000
+SET gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecPeiTempRamBase = 0xC4FF0000
 SET gUefiOvmfPkgTokenSpaceGuid.PcdOvmfSecPeiTempRamSize = 0x00010000
 
 SET gOrbiterTokenSpaceGuid.PcdFdSize = $(FW_SIZE)
