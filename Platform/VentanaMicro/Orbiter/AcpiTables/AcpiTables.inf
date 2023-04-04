@@ -26,6 +26,6 @@
   Silicon/VentanaMicro/VentanaMicro.dec
 
 [FixedPcd]
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterBase
   gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate
-  gOrbiterTokenSpaceGuid.Uart16550Interrupt
+  gOrbiterTokenSpaceGuid.PcdUartBase
+  gOrbiterTokenSpaceGuid.PcdUartInterrupt

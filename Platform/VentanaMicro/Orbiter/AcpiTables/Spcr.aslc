@@ -32,13 +32,13 @@ STATIC EFI_ACPI_SERIAL_PORT_CONSOLE_REDIRECTION_TABLE Spcr = {
     EFI_ACPI_RESERVED_BYTE
   },
   // EFI_ACPI_6_4_GENERIC_ADDRESS_STRUCTURE  BaseAddress;
-  { EFI_ACPI_6_4_SYSTEM_MEMORY, 32, 0, EFI_ACPI_6_4_DWORD, FixedPcdGet64 (PcdSerialRegisterBase) },
+  { EFI_ACPI_6_4_SYSTEM_MEMORY, 32, 0, EFI_ACPI_6_4_DWORD, FixedPcdGet64 (PcdUartBase) },
   // UINT8                                   InterruptType;
   EFI_ACPI_SERIAL_PORT_CONSOLE_REDIRECTION_TABLE_INTERRUPT_TYPE_APIC,
   // UINT8                                   Irq;
   0,  // Not valid for APIC
   // UINT32                                  GlobalSystemInterrupt;
-  FixedPcdGet32 (Uart16550Interrupt),
+  FixedPcdGet32 (PcdUartInterrupt),
   // UINT8                                   BaudRate;
 #if (FixedPcdGet64 (PcdUartDefaultBaudRate) == 9600)
   EFI_ACPI_SERIAL_PORT_CONSOLE_REDIRECTION_TABLE_BAUD_RATE_9600,

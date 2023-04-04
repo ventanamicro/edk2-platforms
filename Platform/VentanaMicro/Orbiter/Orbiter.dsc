@@ -69,6 +69,11 @@
 #
 ################################################################################
 [PcdsFixedAtBuild]
+  # Serial Port
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseMmio|TRUE
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseHardwareFlowControl|FALSE
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterStride|1
+
   # Use emulator variable for now
   gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable | TRUE
 
@@ -96,6 +101,7 @@
 !include Silicon/VentanaMicro/VT1/VT1.dsc.inc
 
 [LibraryClasses]
+  SerialPortLib|Platform/VentanaMicro/Orbiter/Library/CspSerialPortLib/CspSerialPortLib.inf
   # Need "Real" HW real time clock
   RealTimeClockLib|EmbeddedPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
   # Enable during CIH

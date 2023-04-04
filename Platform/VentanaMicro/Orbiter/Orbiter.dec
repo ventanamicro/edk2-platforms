@@ -34,8 +34,9 @@
   gOrbiterSpiFlashProtocolGuid = { 0xd9ecd13e, 0xa28d, 0x4d98, { 0xb6, 0x53, 0x27, 0xad, 0x0e, 0x93, 0x96, 0x68 }}
 
 [PcdsFixedAtBuild]
-  #FIXME: ISS/QEMU value
-  gOrbiterTokenSpaceGuid.Uart16550Interrupt|10|UINT32|0x00001000
+  gOrbiterTokenSpaceGuid.PcdUartInterrupt|37|UINT32|0x00001000
+  gOrbiterTokenSpaceGuid.PcdUartBase|0x4219c000|UINT64|0x00001009
+  gOrbiterTokenSpaceGuid.PcdUartClk|0x0|UINT64|0x00001010
 
   #I2C. FIXMIX: Sync with HW
   gOrbiterTokenSpaceGuid.PcdI2cReferenceClock|400000|UINT32|0x00001001
