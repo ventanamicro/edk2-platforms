@@ -17,7 +17,6 @@
 
 [Sources]
   Dsdt.asl
-  Spcr.aslc
 
 [Packages]
   MdePkg/MdePkg.dec
@@ -26,6 +25,4 @@
   Silicon/VentanaMicro/VentanaMicro.dec
 
 [FixedPcd]
-  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate
-  gOrbiterTokenSpaceGuid.PcdUartBase
-  gOrbiterTokenSpaceGuid.PcdUartInterrupt
+
