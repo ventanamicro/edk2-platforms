@@ -20,10 +20,6 @@
 [Sources]
   Fadt.aslc
 
-[Binaries]
-  ASL|Madt.aml
-  ASL|Rhct.aml
-
 [Packages]
   MdeModulePkg/MdeModulePkg.dec
   MdePkg/MdePkg.dec

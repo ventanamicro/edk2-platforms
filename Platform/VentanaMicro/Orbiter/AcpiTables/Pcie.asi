@@ -20,7 +20,7 @@ Scope (\_SB)
     Name (_CCA, ONE)
 
     Method (_STA, 0, NotSerialized) {
-      Return (0x1)
+      Return (0x0)
     }
 
     //
@@ -115,7 +115,7 @@ Scope (\_SB)
           PosDecode,            // Decode
           MinFixed,             // IsMinFixed
           MaxFixed,             // IsMaxFixed
-          Cacheable,            // Cacheable
+          NonCacheable,         // NonCacheable
           ReadWrite,            // ReadAndWrite
           0x0000000000000000,   // AddressGranularity - GRA
           0x0000000090000000,   // AddressMinimum - MIN
@@ -129,13 +129,13 @@ Scope (\_SB)
           PosDecode,            // Decode
           MinFixed,             // IsMinFixed
           MaxFixed,             // IsMaxFixed
-          Cacheable,            // Cacheable
+          NonCacheable,         // NonCacheable
           ReadWrite,            // ReadAndWrite
           0x0000000000000000,   // AddressGranularity - GRA
-          0x0000000400000000,   // AddressMinimum - MIN
-          0x00000004FFFFFFFF,   // AddressMaximum - MAX
+          0x0000004000000000,   // AddressMinimum - MIN
+          0x0000004FFFFFFFFF,   // AddressMaximum - MAX
           0x0000000000000000,   // AddressTranslation - TRA
-          0x0000000100000000    // RangeLength - LEN
+          0x0000001000000000    // RangeLength - LEN
         )
       })
 
@@ -271,7 +271,15 @@ Scope (\_SB)
       //
       Return (Buffer() {0})
     }
-
+    //
+    // Root Port 0 Device within the Root Complex.
+    //
+    Device (RP0) {
+      //
+      // Device 0, Function 0.
+      //
+      Name (_ADR, 0x00000000)
+    }
     Method (_PXM, 0, NotSerialized) {
       Return(0x00)
     }
@@ -288,7 +296,7 @@ Scope (\_SB)
     Name (_CCA, ONE)
 
     Method (_STA, 0, NotSerialized) {
-      Return (0x1)
+      Return (0x0)
     }
 
     //
@@ -383,7 +391,7 @@ Scope (\_SB)
           PosDecode,            // Decode
           MinFixed,             // IsMinFixed
           MaxFixed,             // IsMaxFixed
-          Cacheable,            // Cacheable
+          NonCacheable,            // NonCacheable
           ReadWrite,            // ReadAndWrite
           0x0000000000000000,   // AddressGranularity - GRA
           0x00000000A0000000,   // AddressMinimum - MIN
@@ -397,13 +405,13 @@ Scope (\_SB)
           PosDecode,            // Decode
           MinFixed,             // IsMinFixed
           MaxFixed,             // IsMaxFixed
-          Cacheable,            // Cacheable
+          NonCacheable,            // NonCacheable
           ReadWrite,            // ReadAndWrite
           0x0000000000000000,   // AddressGranularity - GRA
-          0x0000000500000000,   // AddressMinimum - MIN
-          0x00000005FFFFFFFF,   // AddressMaximum - MAX
+          0x0000005000000000,   // AddressMinimum - MIN
+          0x0000005FFFFFFFFF,   // AddressMaximum - MAX
           0x0000000000000000,   // AddressTranslation - TRA
-          0x0000000100000000    // RangeLength - LEN
+          0x0000001000000000    // RangeLength - LEN
         )
       })
 
@@ -539,7 +547,15 @@ Scope (\_SB)
       //
       Return (Buffer() {0})
     }
-
+    //
+    // Root Port 0 Device within the Root Complex.
+    //
+    Device (RP0) {
+      //
+      // Device 0, Function 0.
+      //
+      Name (_ADR, 0x00000000)
+    }
     Method (_PXM, 0, NotSerialized) {
       Return(0x00)
     }
@@ -556,7 +572,7 @@ Scope (\_SB)
     Name (_CCA, ONE)
 
     Method (_STA, 0, NotSerialized) {
-      Return (0x1)
+      Return (0x0)
     }
 
     //
@@ -651,7 +667,7 @@ Scope (\_SB)
           PosDecode,            // Decode
           MinFixed,             // IsMinFixed
           MaxFixed,             // IsMaxFixed
-          Cacheable,            // Cacheable
+          NonCacheable,         // NonCacheable
           ReadWrite,            // ReadAndWrite
           0x0000000000000000,   // AddressGranularity - GRA
           0x00000000B0000000,   // AddressMinimum - MIN
@@ -665,13 +681,13 @@ Scope (\_SB)
           PosDecode,            // Decode
           MinFixed,             // IsMinFixed
           MaxFixed,             // IsMaxFixed
-          Cacheable,            // Cacheable
+          NonCacheable,         // NonCacheable
           ReadWrite,            // ReadAndWrite
           0x0000000000000000,   // AddressGranularity - GRA
-          0x0000000600000000,   // AddressMinimum - MIN
-          0x000000063FFFFFFF,   // AddressMaximum - MAX
+          0x0000006000000000,   // AddressMinimum - MIN
+          0x00000063FFFFFFFF,   // AddressMaximum - MAX
           0x0000000000000000,   // AddressTranslation - TRA
-          0x0000000040000000    // RangeLength - LEN
+          0x0000000400000000    // RangeLength - LEN
         )
       })
 
@@ -807,7 +823,15 @@ Scope (\_SB)
       //
       Return (Buffer() {0})
     }
-
+    //
+    // Root Port 0 Device within the Root Complex.
+    //
+    Device (RP0) {
+      //
+      // Device 0, Function 0.
+      //
+      Name (_ADR, 0x00000000)
+    }
     Method (_PXM, 0, NotSerialized) {
       Return(0x00)
     }
@@ -824,7 +848,7 @@ Scope (\_SB)
     Name (_CCA, ONE)
 
     Method (_STA, 0, NotSerialized) {
-      Return (0x1)
+      Return (0x0)
     }
 
     //
@@ -919,7 +943,7 @@ Scope (\_SB)
           PosDecode,            // Decode
           MinFixed,             // IsMinFixed
           MaxFixed,             // IsMaxFixed
-          Cacheable,            // Cacheable
+          NonCacheable,            // NonCacheable
           ReadWrite,            // ReadAndWrite
           0x0000000000000000,   // AddressGranularity - GRA
           0x00000000B4000000,   // AddressMinimum - MIN
@@ -933,13 +957,13 @@ Scope (\_SB)
           PosDecode,            // Decode
           MinFixed,             // IsMinFixed
           MaxFixed,             // IsMaxFixed
-          Cacheable,            // Cacheable
+          NonCacheable,         // NonCacheable
           ReadWrite,            // ReadAndWrite
           0x0000000000000000,   // AddressGranularity - GRA
-          0x0000000640000000,   // AddressMinimum - MIN
-          0x000000067FFFFFFF,   // AddressMaximum - MAX
+          0x0000006400000000,   // AddressMinimum - MIN
+          0x00000067FFFFFFFF,   // AddressMaximum - MAX
           0x0000000000000000,   // AddressTranslation - TRA
-          0x0000000040000000    // RangeLength - LEN
+          0x0000000400000000    // RangeLength - LEN
         )
       })
 
@@ -1074,7 +1098,15 @@ Scope (\_SB)
       //
       Return (Buffer() {0})
     }
-
+    //
+    // Root Port 0 Device within the Root Complex.
+    //
+    Device (RP0) {
+      //
+      // Device 0, Function 0.
+      //
+      Name (_ADR, 0x00000000)
+    }
     Method (_PXM, 0, NotSerialized) {
       Return(0x00)
     }

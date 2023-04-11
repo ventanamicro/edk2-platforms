@@ -57,7 +57,7 @@ EFI_ACPI_6_5_FIXED_ACPI_DESCRIPTION_TABLE Fadt = {
   NULL_GAS,                                                                 // EFI_ACPI_6_5_GENERIC_ADDRESS_STRUCTURE  ResetReg
   0,                                                                        // UINT8      ResetValue
   0,                                                                        // UINT16     ArmBootArch
-  4,                                                                        // UINT8      MinorVersion
+  EFI_ACPI_6_5_FIXED_ACPI_DESCRIPTION_TABLE_MINOR_REVISION,                 // UINT8      MinorVersion
   0,                                                                        // UINT64     XFirmwareCtrl
   0,                                                                        // UINT64     XDsdt
   NULL_GAS,                                                                 // EFI_ACPI_6_5_GENERIC_ADDRESS_STRUCTURE  XPm1aEvtBlk

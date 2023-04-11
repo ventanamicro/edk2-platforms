@@ -81,6 +81,13 @@
   gOrbiterTokenSpaceGuid.PcdFixedRamdiskBase | 0xD0000000
   gOrbiterTokenSpaceGuid.PcdFixedRamdiskSize | 0x00600000
 
+  # ACPI
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiExposedTableVersions|0x20
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"Vetana"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x205245544942524F #ORBITER
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId|0x4E544E56 # VNTN
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorRevision|0x000000001
+
 [PcdsDynamicExDefault.common.DEFAULT]
 !if $(CAPSULE_ENABLE) == TRUE
   gEfiSignedCapsulePkgTokenSpaceGuid.PcdEdkiiSystemFirmwareImageDescriptor|{0x0}|VOID*|0x100

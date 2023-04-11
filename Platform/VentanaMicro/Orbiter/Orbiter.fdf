@@ -407,7 +407,7 @@ FMP_PAYLOAD = FmpPayloadSystemFirmwarePkcs7
 [Rule.Common.USER_DEFINED.ACPITABLE]
   FILE FREEFORM = $(NAMED_GUID) {
     RAW ACPI Optional      |.acpi
-    RAW ASL                |.aml
+    RAW ASL  Optional      |.aml
   }
 
 [Rule.Common.PEIM.FMP_IMAGE_DESC]
