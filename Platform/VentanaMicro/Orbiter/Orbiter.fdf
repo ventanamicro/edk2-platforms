@@ -242,7 +242,8 @@ READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 FvNameGuid         = 27A72E80-3118-4c0c-8673-AA5B4EFA9613
 
-INF  OvmfPkg/RiscVVirt/Sec/SecMain.inf
+INF  Platform/VentanaMicro/Orbiter/Sec/SecMain.inf
+
 !if $(CAPSULE_ENABLE) == TRUE
   # FMP image decriptor
 INF  RuleOverride = FMP_IMAGE_DESC Platform/VentanaMicro/Orbiter/Capsule/SystemFirmwareDescriptor/SystemFirmwareDescriptor.inf
