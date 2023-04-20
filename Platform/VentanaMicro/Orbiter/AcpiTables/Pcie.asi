@@ -20,7 +20,7 @@ Scope (\_SB)
     Name (_CCA, ONE)
 
     Method (_STA, 0, NotSerialized) {
-      Return (0x0)
+      Return (0xf)
     }
 
     //

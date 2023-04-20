@@ -69,9 +69,9 @@ INF  RuleOverride=ACPITABLE Silicon/VentanaMicro/VT1/AcpiTables/AcpiTables.inf
 #
 # PCIe Support
 #
-#INF  OvmfPkg/RiscVVirt/PciCpuIo2Dxe/PciCpuIo2Dxe.inf
-#INF  MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
-#INF  MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+INF  OvmfPkg/RiscVVirt/PciCpuIo2Dxe/PciCpuIo2Dxe.inf
+INF  MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
+INF  MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
 
 #
 # Video support
@@ -146,21 +146,21 @@ INF  FatPkg/EnhancedFatDxe/Fat.inf
 #
 # SCSI Bus and Disk Driver
 #
-#INF  MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
-#INF  MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
+INF  MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
+INF  MdeModulePkg/Bus/Scsi/ScsiDiskDxe/ScsiDiskDxe.inf
 
 #
 # SATA Support
 #
-#INF  MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
-#INF  MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
-#INF  MdeModulePkg/Bus/Pci/SataControllerDxe/SataControllerDxe.inf
-#INF  MdeModulePkg/Bus/Pci/NonDiscoverablePciDeviceDxe/NonDiscoverablePciDeviceDxe.inf
+INF  MdeModulePkg/Bus/Ata/AtaAtapiPassThru/AtaAtapiPassThru.inf
+INF  MdeModulePkg/Bus/Ata/AtaBusDxe/AtaBusDxe.inf
+INF  MdeModulePkg/Bus/Pci/SataControllerDxe/SataControllerDxe.inf
+INF  MdeModulePkg/Bus/Pci/NonDiscoverablePciDeviceDxe/NonDiscoverablePciDeviceDxe.inf
 
 #
 # NVME Support
 #
-#INF  MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
+INF  MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
 
 !ifndef $(SOURCE_DEBUG_ENABLE)
 INF  MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
@@ -171,27 +171,27 @@ INF  MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
 INF  ShellPkg/Application/Shell/Shell.inf
 
 # TFTP support for PXE boot
-#INF  ShellPkg/DynamicCommand/TftpDynamicCommand/TftpDynamicCommand.inf
-#INF  ShellPkg/DynamicCommand/TftpDynamicCommand/TftpApp.inf
+INF  ShellPkg/DynamicCommand/TftpDynamicCommand/TftpDynamicCommand.inf
+INF  ShellPkg/DynamicCommand/TftpDynamicCommand/TftpApp.inf
 
 # HTTP support for PXE boot
-#INF  ShellPkg/DynamicCommand/HttpDynamicCommand/HttpDynamicCommand.inf
-#INF  ShellPkg/DynamicCommand/HttpDynamicCommand/HttpApp.inf
+INF  ShellPkg/DynamicCommand/HttpDynamicCommand/HttpDynamicCommand.inf
+INF  ShellPkg/DynamicCommand/HttpDynamicCommand/HttpApp.inf
 
 #
 # Network modules
 #
-#!include NetworkPkg/Network.fdf.inc
+!include NetworkPkg/Network.fdf.inc
 
 #
 # Usb Support
 #
-#INF  MdeModulePkg/Bus/Pci/UhciDxe/UhciDxe.inf
-#INF  MdeModulePkg/Bus/Pci/EhciDxe/EhciDxe.inf
-#INF  MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
-#INF  MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
-#INF  MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
-#INF  MdeModulePkg/Bus/Usb/UsbMassStorageDxe/UsbMassStorageDxe.inf
+INF  MdeModulePkg/Bus/Pci/UhciDxe/UhciDxe.inf
+INF  MdeModulePkg/Bus/Pci/EhciDxe/EhciDxe.inf
+INF  MdeModulePkg/Bus/Pci/XhciDxe/XhciDxe.inf
+INF  MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf
+INF  MdeModulePkg/Bus/Usb/UsbKbDxe/UsbKbDxe.inf
+INF  MdeModulePkg/Bus/Usb/UsbMassStorageDxe/UsbMassStorageDxe.inf
 
 #
 # Expose Firmware Volume
@@ -201,7 +201,7 @@ INF  ShellPkg/Application/Shell/Shell.inf
 #
 # Ramdisk for bring up. NOT UPSTREAM
 #
-INF  Platform/VentanaMicro/Orbiter/Drivers/RamDiskDxe/RamDiskDxe.inf
+#INF  Platform/VentanaMicro/Orbiter/Drivers/RamDiskDxe/RamDiskDxe.inf
 
 #
 # Miscs
@@ -210,7 +210,7 @@ INF  Silicon/VentanaMicro/VT1/Drivers/FixMemoryMap/FixMemoryMap.inf
 
 # X86Emulator
 #
-#INF  Silicon/VentanaMicro/X86EmulatorPkg/X86Emulator.inf
+INF  Silicon/VentanaMicro/X86EmulatorPkg/X86Emulator.inf
 
 !if $(CAPSULE_ENABLE) == TRUE
 INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
