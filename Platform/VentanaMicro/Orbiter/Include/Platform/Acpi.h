@@ -167,4 +167,98 @@ typedef struct {
 ///
 #define EFI_ACPI_6_5_RISCV_RHCT_TABLE_SIGNATURE  SIGNATURE_32('R', 'H', 'C', 'T')
 
+
+/** Helper macro for CPPC _CPC object initialization. Use of this macro is
+    restricted to ASL file and not to TDL file.
+
+    @param [in] DesiredPerfReg      Fastchannel address for desired performance
+                                    register.
+    @param [in] PerfLimitedReg      Fastchannel address for performance limited
+                                    register.
+    @param [in] GranularityMHz      Granularity of the performance scale.
+    @param [in] HighestPerf         Highest performance in linear scale.
+    @param [in] NominalPerf         Nominal performance in linear scale.
+    @param [in] LowestNonlinearPerf Lowest non-linear performnce in linear
+                                    scale.
+    @param [in] LowestPerf          Lowest performance in linear scale.
+    @param [in] RefPerf             Reference performance in linear scale.
+**/
+#define CPPC_PACKAGE_INIT(GranularityMHz,                                      \
+  HighestPerf, NominalPerf, LowestNonlinearPerf, LowestPerf, RefPerf)          \
+  {                                                                            \
+    23,                                 /* NumEntries */                       \
+    3,                                  /* Revision */                         \
+    HighestPerf,                        /* Highest Performance */              \
+    NominalPerf,                        /* Nominal Performance */              \
+    LowestNonlinearPerf,                /* Lowest Nonlinear Performance */     \
+    LowestPerf,                         /* Lowest Performance */               \
+    /* Guaranteed Performance Register */                                      \
+    ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
+    /* Desired Performance Register */                                         \
+    ResourceTemplate () { Register (FFixedHW, 32, 0, 0x00000005, 3) },         \
+    /* Minimum Performance Register */                                         \
+    ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
+    /* Maximum Performance Register */                                         \
+    ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
+    /* Performance Reduction Tolerance Register */                             \
+    ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
+    /* Time Window Register */                                                 \
+    ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
+    /* Counter Wraparound Time */                                              \
+    ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
+    /* Reference Performance Counter Register */                               \
+    ResourceTemplate () { Register (FFixedHW, 64, 0, 0x0000000B, 4) },         \
+    /* Delivered Performance Counter Register */                               \
+    ResourceTemplate () { Register (FFixedHW, 64, 0, 0x0000000C, 4) },         \
+    /* Performance Limited Register */                                         \
+    ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
+    /* CPPC Enable Register */                                                 \
+    ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
+    /* Autonomous Selection Enable Register */                                 \
+    ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
+    /* Autonomous Activity Window Register */                                  \
+    ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
+    /* Energy Performance Preference Register */                               \
+    ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
+    RefPerf,                            /* Reference Performance */            \
+    (LowestPerf * GranularityMHz),      /* Lowest Frequency */                 \
+    (NominalPerf * GranularityMHz),     /* Nominal Frequency */                \
+  }
+
+// Power state dependency (_PSD) for CPPC
+
+/** Helper macro to initialize Power state dependancy (_PSD) object required
+    for CPPC. Use of this macro is restricted to ASL file and not to TDL file.
+
+    @param [in] Domain              The dependency domain number to which this
+                                    P-state entry belongs.
+**/
+#define PSD_INIT(Domain)                                                       \
+  {                                                                            \
+    5,              /* Entries */                                              \
+    0,              /* Revision */                                             \
+    Domain,         /* Domain */                                               \
+    0xFD,           /* Coord Type- SW_ANY */                                   \
+    1               /* Processors */                                           \
+  }
+
+// ACPI OSC Status bits
+#define OSC_STS_BIT0_RES              (1U << 0)
+#define OSC_STS_FAILURE               (1U << 1)
+#define OSC_STS_UNRECOGNIZED_UUID     (1U << 2)
+#define OSC_STS_UNRECOGNIZED_REV      (1U << 3)
+#define OSC_STS_CAPABILITY_MASKED     (1U << 4)
+#define OSC_STS_MASK                  (OSC_STS_BIT0_RES          | \
+                                       OSC_STS_FAILURE           | \
+                                       OSC_STS_UNRECOGNIZED_UUID | \
+                                       OSC_STS_UNRECOGNIZED_REV  | \
+                                       OSC_STS_CAPABILITY_MASKED)
+
+// ACPI OSC for Platform-Wide Capability
+#define OSC_CAP_CPPC_SUPPORT          (1U << 5)
+#define OSC_CAP_CPPC2_SUPPORT         (1U << 6)
+#define OSC_CAP_PLAT_COORDINATED_LPI  (1U << 7)
+#define OSC_CAP_OS_INITIATED_LPI      (1U << 8)
+
+
 #endif /* ACPI_H_ */
