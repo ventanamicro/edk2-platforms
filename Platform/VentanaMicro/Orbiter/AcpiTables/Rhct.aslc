@@ -85,9 +85,9 @@ EFI_ACPI_6_5_RISCV_RHCT_TABLE Rhct = {
     EFI_ACPI_6_5_RISCV_RHCT_CMO_NODE, // Type
     sizeof (EFI_ACPI_6_5_RISCV_RHCT_CMO_NODE_STRUCTURE), // Length;
     EFI_ACPI_6_5_RISCV_RHCT_CMO_NODE_STRUCTURE_VERSION, // Revision
-    64, // CBOM Block Size
-    64, // CBOP Block Size
-    64, // CBOZ Block Size
+    6, // CBOM Block Size
+    6, // CBOP Block Size
+    6, // CBOZ Block Size
   },
   {
     RISCV_RHCT_HART_INFO_NODE_DATA(0),

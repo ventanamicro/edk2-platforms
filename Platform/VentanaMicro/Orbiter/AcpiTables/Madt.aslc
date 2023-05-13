@@ -46,14 +46,14 @@
     EFI_ACPI_6_5_RISCV_APLIC, \
     sizeof (EFI_ACPI_6_5_RISCV_APLIC_STRUCTURE), \
     EFI_ACPI_6_5_RISCV_APLIC_STRUCTURE_VERSION, \
-    0,  \
     Id, \
+    0,  \
     Hid, \
     NumIDCs, \
+    NumSources, \
     GlobalIntBase, \
     BaseAddress, \
-    BaseSize, \
-    NumSources \
+    BaseSize \
   }
 
 //
@@ -106,7 +106,7 @@ EFI_ACPI_6_5_MULTIPLE_APIC_DESCRIPTION_TABLE Madt = {
   MADT_IMSIC_STRUCTURE (0xff, 0xff, 4, 4, 1, 24),
 
   // APLIC with HID VNTN0001
-  MADT_APLIC_STRUCTURE (0, 0x313030304E544E56ULL ,0 , 0, ORBITER_APLIC_BASE, ORBITER_APLIC_SIZE, 0x64),
+  MADT_APLIC_STRUCTURE (0, 0x313030304E544E56ULL , 0, 0, ORBITER_APLIC_BASE, ORBITER_APLIC_SIZE, 0x64),
 };
 
 VOID * CONST ReferenceAcpiTable = &Madt;

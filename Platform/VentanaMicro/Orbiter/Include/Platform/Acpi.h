@@ -72,14 +72,14 @@ typedef struct {
   UINT8     Type;
   UINT8     Length;
   UINT8     Version;
-  UINT8     Reserved;
-  UINT32    Id;
+  UINT8     Id;
+  UINT32    Flags;
   UINT64    Hid;
-  UINT32    NumIDCs;
+  UINT16    NumIDCs;
+  UINT16    NumSources;
   UINT32    GlobalIntBase;
   UINT64    BaseAddress;
   UINT32    BaseSize;
-  UINT16    NumSources;
 } EFI_ACPI_6_5_RISCV_APLIC_STRUCTURE;
 
 #define EFI_ACPI_6_5_RISCV_APLIC_STRUCTURE_VERSION 1
@@ -126,9 +126,10 @@ typedef struct {
   UINT16    Type;
   UINT16    Length;
   UINT16    Revision;
-  UINT16    CbomBlockSize;
-  UINT16    CbopBlockSize;
-  UINT16    CbozBlockSize;
+  UINT8     Reserved;
+  UINT8     CbomBlockSize;
+  UINT8     CbopBlockSize;
+  UINT8     CbozBlockSize;
 } EFI_ACPI_6_5_RISCV_RHCT_CMO_NODE_STRUCTURE;
 
 #define EFI_ACPI_6_5_RISCV_RHCT_CMO_NODE_STRUCTURE_VERSION 1
