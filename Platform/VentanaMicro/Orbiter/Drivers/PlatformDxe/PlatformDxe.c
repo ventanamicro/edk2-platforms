@@ -132,7 +132,12 @@ InstallAcpiOnReadyToBoot (
   IN VOID      *Context
   )
 {
-  // Do nothing for now
+  EFI_STATUS  Status;
+
+  // Install ACPI MADT
+  Status = AcpiInstallMadtTable ();
+  ASSERT_EFI_ERROR (Status);
+
 
   //
   // Close the event, so it will not be signalled again.

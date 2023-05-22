@@ -19,6 +19,7 @@
 
 [Sources]
   PlatformDxe.c
+  AcpiMadt.c
 
 [Packages]
   EmbeddedPkg/EmbeddedPkg.dec
@@ -43,6 +44,8 @@
   UefiLib
   UefiRuntimeServicesTableLib
   AcpiLib
+  FdtLib
+  HobLib
 
 [Guids]
   gEfiAcpiTableGuid
@@ -50,6 +53,7 @@
   gEfiEventReadyToBootGuid
   gOrbiterNonDiscoverableRuntimeSysI2cMasterGuid
   gOrbiterNonDiscoverableRuntimeSysQspiMasterGuid
+  gFdtHobGuid
 
 [Protocols]
   gEdkiiNonDiscoverableDeviceProtocolGuid         ## PRODUCES

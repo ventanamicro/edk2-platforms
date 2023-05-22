@@ -17,7 +17,6 @@
 
 [Sources]
   Dsdt.asl
-  Madt.aslc
   Rhct.aslc
   Mcfg.aslc
 

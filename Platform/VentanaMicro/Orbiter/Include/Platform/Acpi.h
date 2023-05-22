@@ -27,6 +27,8 @@
 #define EFI_ACPI_6_5_RISCV_APLIC                    0x1A
 #define EFI_ACPI_6_5_RISCV_PLIC                     0x1B
 
+#pragma pack (1)
+
 ///
 /// RISC-V Hart Local Interrupt Controller
 ///
@@ -167,6 +169,7 @@ typedef struct {
 ///
 #define EFI_ACPI_6_5_RISCV_RHCT_TABLE_SIGNATURE  SIGNATURE_32('R', 'H', 'C', 'T')
 
+#pragma pack ()
 
 /** Helper macro for CPPC _CPC object initialization. Use of this macro is
     restricted to ASL file and not to TDL file.

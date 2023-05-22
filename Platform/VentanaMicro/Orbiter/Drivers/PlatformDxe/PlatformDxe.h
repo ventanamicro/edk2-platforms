@@ -27,7 +27,17 @@
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
-#include "AcpiPlatform.h"
-#include "Platform/MemoryMap.h"
+#include <IndustryStandard/Acpi65.h>
+#include <libfdt.h>
+#include <Library/HobLib.h>
+#include <Platform/Acpi.h>
+#include <Platform/MemoryMap.h>
+#include <Platform/Soc.h>
+#include <AcpiPlatform.h>
+
+EFI_STATUS
+AcpiInstallMadtTable (
+  VOID
+  );
 
 #endif /* PLATFORM_DXE_H */
