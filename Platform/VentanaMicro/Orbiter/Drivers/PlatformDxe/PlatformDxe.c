@@ -138,6 +138,9 @@ InstallAcpiOnReadyToBoot (
   Status = AcpiInstallMadtTable ();
   ASSERT_EFI_ERROR (Status);
 
+  // Install ACPI RHCT
+  Status = AcpiInstallRhctTable ();
+  ASSERT_EFI_ERROR (Status);
 
   //
   // Close the event, so it will not be signalled again.

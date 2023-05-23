@@ -20,6 +20,7 @@
 [Sources]
   PlatformDxe.c
   AcpiMadt.c
+  AcpiRhct.c
 
 [Packages]
   EmbeddedPkg/EmbeddedPkg.dec
