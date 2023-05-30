@@ -210,7 +210,7 @@ INF  Silicon/VentanaMicro/VT1/Drivers/FixMemoryMap/FixMemoryMap.inf
 
 # X86Emulator
 #
-INF  Silicon/VentanaMicro/X86EmulatorPkg/X86Emulator.inf
+#INF  Silicon/VentanaMicro/X86EmulatorPkg/X86Emulator.inf
 
 !if $(CAPSULE_ENABLE) == TRUE
 INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
