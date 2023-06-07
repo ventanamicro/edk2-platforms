@@ -84,7 +84,7 @@ INF  Platform/VentanaMicro/Orbiter/Drivers/SmbiosPlatformDxe/SmbiosPlatformDxe.i
 #INF  Platform/VentanaMicro/Orbiter/Drivers/I2cDxe/I2cDxe.inf
 INF  Platform/VentanaMicro/Orbiter/Drivers/PlatformDxe/PlatformDxe.inf
 #INF  Platform/VentanaMicro/Orbiter/Drivers/QspiDxe/QspiDxe.inf
-#INF  Platform/VentanaMicro/Orbiter/Drivers/GigUndiDxe/GigUndiDxe.inf
+INF  Platform/VentanaMicro/Orbiter/Drivers/GigUndiDxe/GigUndiDxe.inf
 
 # RISC-V Core Drivers
 INF  UefiCpuPkg/CpuTimerDxeRiscV64/CpuTimerDxeRiscV64.inf
