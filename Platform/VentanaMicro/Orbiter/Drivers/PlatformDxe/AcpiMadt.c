@@ -13,14 +13,14 @@
 
 STATIC UINT64  *mDeviceTree = NULL;
 
-#define MADT_RINTC_STRUCTURE(HardId, AcpiCpuUid, IntId, ImsicBase, ImsicSize) \
+#define MADT_RINTC_STRUCTURE(RintcFlags, HartId, AcpiCpuUid, IntId, ImsicBase, ImsicSize) \
   { \
     EFI_ACPI_6_5_RISCV_RINTC, \
     sizeof (EFI_ACPI_6_5_RISCV_RINTC_STRUCTURE), \
     EFI_ACPI_6_5_RISCV_RINTC_STRUCTURE_VERSION, \
     0, \
-    EFI_ACPI_6_5_RISCV_RINTC_FLAG_ENABLE, \
-    HardId, \
+    RintcFlags, \
+    HartId, \
     AcpiCpuUid, \
     IntId, \
     ImsicBase, \
@@ -72,7 +72,7 @@ STATIC
 UINTN
 MadtRintcImiscGenerate (EFI_ACPI_6_5_RISCV_RINTC_STRUCTURE *RintcPtr)
 {
-  EFI_ACPI_6_5_RISCV_RINTC_STRUCTURE    RintcTemplate = MADT_RINTC_STRUCTURE(0, 0, 0, 0, 0);
+  EFI_ACPI_6_5_RISCV_RINTC_STRUCTURE    RintcTemplate = MADT_RINTC_STRUCTURE(0, 0, 0, 0, 0, 0);
   EFI_ACPI_6_5_RISCV_IMSIC_STRUCTURE    ImsicTemplate = MADT_IMSIC_STRUCTURE(0, 0, 0, 0, 0, 0);
   CONST UINT64                          *Prop, *IntExtProp, *ImsicRegProp;
   UINT32                                HartId;
@@ -202,7 +202,22 @@ MadtRintcImiscGenerate (EFI_ACPI_6_5_RISCV_RINTC_STRUCTURE *RintcPtr)
               ));
             return 0;
           }
+
           HartId = fdt32_to_cpu (ReadUnaligned32 ((const UINT32 *)Prop));
+
+          /*
+           * Check for disabled cpu and mark appropriately in MADT.
+           */
+          Prop = fdt_getprop (FdtPointer, CpuNode, "status", &Len);
+          if (!Prop || (Prop &&
+                        ((AsciiStrnCmp ((const CHAR8 *)Prop, "okay", Len) == 0) ||
+                        (AsciiStrnCmp ((const CHAR8 *)Prop, "ok", Len) == 0)))) {
+            RintcTemplate.Flags = EFI_ACPI_6_5_RISCV_RINTC_FLAG_ENABLE;
+          }
+          else {
+            RintcTemplate.Flags = 0;
+          }
+
           RintcTemplate.HardId = (UINT64)HartId;
           RintcTemplate.ACPIProcessorId = (UINT32)ACPICpuId++;
           RintcTemplate.ImsicBaseAddress = ImsisBaseAddr + Idx1 * ((1 << HartIdxBits) * IMSIC_MMIO_PAGE_SZ);
