@@ -74,6 +74,7 @@
   PrintLib
   TimerLib
   UefiLib
+  CpuExceptionHandlerLib
 
 [LibraryClasses.AARCH64]
   DefaultExceptionHandlerLib

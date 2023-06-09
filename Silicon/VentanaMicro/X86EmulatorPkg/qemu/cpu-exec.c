@@ -24,6 +24,7 @@
 #include "X86Emulator.h"
 
 int tb_invalidated_flag;
+extern volatile int in_critical;
 
 //#define CONFIG_DEBUG_EXEC
 
@@ -68,7 +69,11 @@ static void cpu_exec_nocache(CPUState *env, int max_cycles,
                      max_cycles);
     env->current_tb = tb;
     /* execute the generated code */
+    in_critical = 0;
+    gBS->RestoreTPL (env->exec_tpl);
     next_tb = tcg_qemu_tb_exec(env, tb->tc_ptr);
+    env->exec_tpl = gBS->RaiseTPL (TPL_HIGH_LEVEL);
+    in_critical = 1;
     env->current_tb = NULL;
 
     if ((next_tb & 3) == 2) {
@@ -184,7 +189,6 @@ static void cpu_handle_debug_exception(CPUState *env)
 /* main execution loop */
 
 volatile sig_atomic_t exit_request;
-extern volatile int in_critical;
 
 int cpu_exec(CPUState *env)
 {
@@ -570,7 +574,7 @@ int cpu_exec(CPUState *env)
                     in_critical = 0;
                     gBS->RestoreTPL (env->exec_tpl);
                     next_tb = tcg_qemu_tb_exec(env, tc_ptr);
-                    env->exec_tpl = gBS->RaiseTPL (TPL_NOTIFY);
+                    env->exec_tpl = gBS->RaiseTPL (TPL_HIGH_LEVEL);
                     in_critical = 1;
                     if ((next_tb & 3) == 2) {
                         /* Instruction counter expired.  */

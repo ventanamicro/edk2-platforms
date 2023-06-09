@@ -132,9 +132,15 @@ void *malloc(unsigned long size)
     int Status;
     void *r = NULL;
 
+    if (in_critical) {
+        gBS->RestoreTPL (env->exec_tpl);
+    }
     Status = gBS->AllocatePool ( EfiBootServicesData,
                                  size,
                                  &r );
+    if (in_critical) {
+        env->exec_tpl = gBS->RaiseTPL (TPL_HIGH_LEVEL);
+    }
 
     if (Status != EFI_SUCCESS)
         return NULL;
@@ -144,7 +150,13 @@ void *malloc(unsigned long size)
 
 void free(void *p)
 {
+    if (in_critical) {
+        gBS->RestoreTPL (env->exec_tpl);
+    }
     gBS->FreePool (p);
+    if (in_critical) {
+        env->exec_tpl = gBS->RaiseTPL (TPL_HIGH_LEVEL);
+    }
 }
 
 void *realloc(void *ptr, size_t size)
@@ -347,7 +359,7 @@ uint64_t run_x86_func(void *func, uint64_t *args)
         asm volatile ("mov %0, sp" : "=r"(sp));
 #endif
         printf_verbose("XXX Entering x86 at %lx (sp=%lx)\n", env->eip, sp);
-        env->exec_tpl = gBS->RaiseTPL (TPL_NOTIFY);
+        env->exec_tpl = gBS->RaiseTPL (TPL_HIGH_LEVEL);
         in_critical = 1;
         trapnr = cpu_x86_exec(env);
         in_critical = 0;

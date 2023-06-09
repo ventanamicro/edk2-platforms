@@ -246,7 +246,7 @@ X86EmulatorDxeEntryPoint (
 
   code_gen_prologue = (UINT8 *)(UINTN)Alloc;
   static_code_gen_buffer = code_gen_prologue + EFI_PAGE_SIZE;
-  DEBUG ((DEBUG_ERROR, "code_gen_prologue:%p\n", code_gen_prologue));
+  DEBUG ((DEBUG_VERBOSE, "code_gen_prologue:%p\n", code_gen_prologue));
 
   Status = gBS->LocateProtocol (&gEfiCpuArchProtocolGuid, NULL, (VOID **)&mCpu);
   ASSERT_EFI_ERROR(Status);

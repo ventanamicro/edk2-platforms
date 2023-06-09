@@ -1,0 +1,9 @@
+[Defines]
+  INF_VERSION                    = 0x00010019
+  BASE_NAME                      = X86EmulatorDxe
+  FILE_GUID                      = 46cb6400-f13e-413e-8c29-d68217f6dacb
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+[Binaries.RISCV64]
+  PE32|RiscV/EmulatorDxe.efi|*
