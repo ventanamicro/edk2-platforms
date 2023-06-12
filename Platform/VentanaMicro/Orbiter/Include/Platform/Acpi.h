@@ -15,7 +15,7 @@
     sizeof (Type),                      /* UINT32  Length */          \
     Revision,                           /* UINT8   Revision */        \
     0,                                  /* UINT8   Checksum */        \
-    { 'V', 'E', 'T', 'A', 'N', 'A' },   /* UINT8   OemId[6] */        \
+    { 'V', 'N', 'T', 'A', 'N', 'A' },   /* UINT8   OemId[6] */        \
     0x205245544942524FULL,              /* UINT64  OemTableId */      \
     1,                                  /* UINT32  OemRevision */     \
     0x4E544E56,                         /* UINT32  CreatorId */       \

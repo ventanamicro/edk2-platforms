@@ -9,7 +9,7 @@
 
 #include "AcpiPlatform.h"
 
-DefinitionBlock("", "DSDT", 1, "VETANA", "ORBITER ", EFI_ACPI_VENTANA_OEM_REVISION)
+DefinitionBlock("", "DSDT", 1, "VNTANA", "ORBITER ", EFI_ACPI_VENTANA_OEM_REVISION)
 {
   Include ("Cpu.asi")
   Include ("Pcie.asi")
