@@ -646,6 +646,6 @@
       TlsLib|CryptoPkg/Library/TlsLib/TlsLib.inf
       IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
       OpensslLib|CryptoPkg/Library/OpensslLib/OpensslLib.inf
-      RngLib|MdePkg/Library/DxeRngLib/DxeRngLib.inf
+      RngLib|MdePkg/Library/BaseRngLibTimerLib/BaseRngLibTimerLib.inf
   }
   NetworkPkg/TlsAuthConfigDxe/TlsAuthConfigDxe.inf
