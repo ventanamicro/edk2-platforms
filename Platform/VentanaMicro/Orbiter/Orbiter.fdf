@@ -48,7 +48,15 @@ READ_LOCK_STATUS   = TRUE
 APRIORI DXE {
   INF  MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
   INF  MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
+!if $(CAPSULE_ENABLE) == TRUE
+  INF  Platform/VentanaMicro/Orbiter/Capsule/SystemFirmwareDescriptor/SystemFirmwareDescriptor.inf
+!endif
 }
+
+!if $(CAPSULE_ENABLE) == TRUE
+  # FMP image decriptor
+INF  RuleOverride=FMP_IMAGE_DESC Platform/VentanaMicro/Orbiter/Capsule/SystemFirmwareDescriptor/SystemFirmwareDescriptor.inf
+!endif
 
 #
 # DXE Phase modules
@@ -245,8 +253,7 @@ FvNameGuid         = 27A72E80-3118-4c0c-8673-AA5B4EFA9613
 INF  Platform/VentanaMicro/Orbiter/Sec/SecMain.inf
 
 !if $(CAPSULE_ENABLE) == TRUE
-  # FMP image decriptor
-INF  RuleOverride = FMP_IMAGE_DESC Platform/VentanaMicro/Orbiter/Capsule/SystemFirmwareDescriptor/SystemFirmwareDescriptor.inf
+INF  RuleOverride=ACPITABLE Platform/VentanaMicro/Orbiter/Capsule/SystemFirmwareDescriptor/SystemFirmwareDescriptorSec.inf
 !endif
 
 FILE FV_IMAGE = 9E21FD93-9C72-4c15-8C4B-E77F1DB2D792 {
@@ -323,7 +330,6 @@ FV = SystemFirmwareUpdateCargo
 
 [Capsule.OrbiterFirmwareUpdateCapsuleFmpPkcs7]
 CAPSULE_GUID                = 6dcbd5ed-e82d-4c44-bda1-7194199ad92a # gEfiFmpCapsuleGuid
-CAPSULE_FLAGS               = PersistAcrossReset,InitiateReset
 CAPSULE_HEADER_SIZE         = 0x20
 CAPSULE_HEADER_INIT_VERSION = 0x1
 
@@ -419,11 +425,11 @@ FMP_PAYLOAD = FmpPayloadSystemFirmwarePkcs7
     RAW ASL  Optional      |.aml
   }
 
-[Rule.Common.PEIM.FMP_IMAGE_DESC]
-  FILE PEIM = $(NAMED_GUID) {
-     RAW BIN                  |.acpi
-     PEI_DEPEX PEI_DEPEX Optional        $(INF_OUTPUT)/$(MODULE_NAME).depex
-     PE32      PE32    Align=4K          $(INF_OUTPUT)/$(MODULE_NAME).efi
-     UI       STRING="$(MODULE_NAME)" Optional
-     VERSION  STRING="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
+[Rule.Common.DXE_DRIVER.FMP_IMAGE_DESC]
+  FILE DRIVER = $(NAMED_GUID) {
+    RAW BIN                |.acpi
+    DXE_DEPEX DXE_DEPEX Optional  |.depex
+    PE32      PE32    Align=4K   $(INF_OUTPUT)/$(MODULE_NAME).efi
+    UI       STRING="$(MODULE_NAME)" Optional
+    VERSION  STRING="$(INF_VERSION)" Optional BUILD_NUM=$(BUILD_NUMBER)
   }

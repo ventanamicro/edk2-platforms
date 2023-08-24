@@ -8,41 +8,45 @@
 
 **/
 
-#include <PiPei.h>
+#include <Pi/PiFirmwareFile.h>
 #include <Guid/EdkiiSystemFmpCapsule.h>
 #include <Library/DebugLib.h>
 #include <Library/PcdLib.h>
-#include <Library/PeiServicesLib.h>
+#include <Library/DxeServicesLib.h>
 #include <Protocol/FirmwareManagement.h>
 
 /**
-  Entrypoint for SystemFirmwareDescriptor PEIM.
+  Entrypoint for SystemFirmwareDescriptor DXE.
 
-  @param[in]  FileHandle  Handle of the file being invoked.
-  @param[in]  PeiServices Describes the list of possible PEI Services.
+  @param[in] ImageHandle      The image handle of the driver.
+  @param[in] SystemTable      The system table.
 
-  @retval EFI_SUCCESS            PPI successfully installed.
+  @retval EFI_SUCCESS         Firmware description set succesfully.
 **/
 EFI_STATUS
 EFIAPI
-SystemFirmwareDescriptorPeimEntry (
-  IN EFI_PEI_FILE_HANDLE     FileHandle,
-  IN CONST EFI_PEI_SERVICES  **PeiServices
+SystemFirmwareDescriptorDxeEntry (
+  IN EFI_HANDLE         ImageHandle,
+  IN EFI_SYSTEM_TABLE   *SystemTable
   )
 {
   EFI_STATUS                              Status;
   EDKII_SYSTEM_FIRMWARE_IMAGE_DESCRIPTOR  *Descriptor;
   UINTN                                   Size;
   UINTN                                   Index;
-  UINT32                                  AuthenticationStatus;
 
   //
   // Search RAW section.
   //
   Index = 0;
   while (TRUE) {
-    Status = PeiServicesFfsFindSectionData3(EFI_SECTION_RAW, Index, FileHandle,
-               (VOID **)&Descriptor, &AuthenticationStatus);
+    Status = GetSectionFromFv (
+              &gEfiCallerIdGuid,
+              EFI_SECTION_RAW,
+              Index,
+              (VOID **)&Descriptor,
+              &Size
+              );
     if (EFI_ERROR(Status)) {
       // Should not happen, must something wrong in FDF.
       ASSERT(FALSE);

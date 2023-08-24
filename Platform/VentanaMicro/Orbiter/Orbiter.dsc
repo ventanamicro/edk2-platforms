@@ -92,9 +92,9 @@
 
 [PcdsDynamicExDefault.common.DEFAULT]
 !if $(CAPSULE_ENABLE) == TRUE
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSystemFmpCapsuleImageTypeIdGuid|{0xc7, 0x23, 0x91, 0x48, 0xe9, 0xff, 0x28, 0x49, 0x83, 0x1d, 0x25, 0x98, 0x0c, 0xac, 0xd6, 0xe1}
   gEfiSignedCapsulePkgTokenSpaceGuid.PcdEdkiiSystemFirmwareImageDescriptor|{0x0}|VOID*|0x100
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSystemFmpCapsuleImageTypeIdGuid|{0x48, 0x91, 0x23, 0xc7, 0xff, 0xe9, 0x49, 0x28, 0x83, 0x1d, 0x25, 0x98, 0x0c, 0xac, 0xd6, 0xe1}
-  gEfiSignedCapsulePkgTokenSpaceGuid.PcdEdkiiSystemFirmwareFileGuid|{0x67, 0x96, 0x4e, 0xa2, 0x63, 0x40, 0x4e, 0x34, 0x94, 0xe5, 0xfe, 0x91, 0xc8, 0x1c, 0x18, 0xc3}
+  gEfiSignedCapsulePkgTokenSpaceGuid.PcdEdkiiSystemFirmwareFileGuid|{0xa2, 0x4e, 0x96, 0x67, 0x40, 0x63, 0x34, 0x4e, 0x94, 0xe5, 0xfe, 0x91, 0xc8, 0x1c, 0x18, 0xc3}
 !endif
   # set PcdPciExpressBaseAddress to MAX_UINT64, which signifies that this
   # PCD and PcdPciDisableBusEnumeration above have not been assigned yet
@@ -139,7 +139,7 @@
   IniParsingLib|SignedCapsulePkg/Library/IniParsingLib/IniParsingLib.inf
   PlatformFlashAccessLib|Platform/VentanaMicro/Orbiter/Capsule/Library/PlatformFlashAccessLib/PlatformFlashAccessLibDxe.inf
   DisplayUpdateProgressLib|MdeModulePkg/Library/DisplayUpdateProgressLibText/DisplayUpdateProgressLibText.inf
-  RngLib|MdePkg/Library/DxeRngLib/DxeRngLib.inf
+  RngLib|MdePkg/Library/BaseRngLibTimerLib/BaseRngLibTimerLib.inf
 !endif
 
 [LibraryClasses.common.DXE_RUNTIME_DRIVER]
@@ -211,7 +211,8 @@
 
 !if $(CAPSULE_ENABLE) == TRUE
   # FMP image decriptor
-  # Platform/VentanaMicro/Orbiter/Capsule/SystemFirmwareDescriptor/SystemFirmwareDescriptor.inf
+  Platform/VentanaMicro/Orbiter/Capsule/SystemFirmwareDescriptor/SystemFirmwareDescriptor.inf
+  Platform/VentanaMicro/Orbiter/Capsule/SystemFirmwareDescriptor/SystemFirmwareDescriptorSec.inf
 
   MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
   SignedCapsulePkg/Universal/SystemFirmwareUpdate/SystemFirmwareReportDxe.inf {

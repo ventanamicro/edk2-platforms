@@ -9,8 +9,9 @@
 
 **/
 
-#include <PiPei.h>
+#include <Uefi/UefiBaseType.h>
 #include <Guid/EdkiiSystemFmpCapsule.h>
+#include <Guid/WinCertificate.h>
 #include <Protocol/FirmwareManagement.h>
 
 #define PACKAGE_VERSION                     0xFFFFFFFF

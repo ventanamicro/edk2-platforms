@@ -9,16 +9,14 @@
 ##
 
 [Defines]
-  INF_VERSION                    = 0x0001001A
-  BASE_NAME                      = SystemFirmwareDescriptorDxe
-  FILE_GUID                      = aea53333-99c2-4d8b-8afc-7adc03346e60
-  MODULE_TYPE                    = DXE_DRIVER
+  INF_VERSION                    = 0x0001001B
+  BASE_NAME                      = SystemFirmwareDescriptor
+  FILE_GUID                      = 90B2B846-CA6D-4D6E-A8D3-C140A8E110AC
+  MODULE_TYPE                    = USER_DEFINED
   VERSION_STRING                 = 1.0
-  ENTRY_POINT                    = SystemFirmwareDescriptorDxeEntry
 
 [Sources]
   SystemFirmwareDescriptorTable.aslc
-  SystemFirmwareDescriptorDxe.c
 
 [Packages]
   MdeModulePkg/MdeModulePkg.dec
@@ -26,19 +24,7 @@
   SignedCapsulePkg/SignedCapsulePkg.dec
   Platform/VentanaMicro/Orbiter/Orbiter.dec
 
-[LibraryClasses]
-  DebugLib
-  PcdLib
-  DxeServicesLib
-  UefiDriverEntryPoint
-
 [FixedPcd]
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision
   gEfiSignedCapsulePkgTokenSpaceGuid.PcdLowestSupportedFirmwareVersion
   gOrbiterTokenSpaceGuid.PcdFdSize
-
-[Pcd]
-  gEfiSignedCapsulePkgTokenSpaceGuid.PcdEdkiiSystemFirmwareImageDescriptor
-
-[Depex]
-  TRUE
