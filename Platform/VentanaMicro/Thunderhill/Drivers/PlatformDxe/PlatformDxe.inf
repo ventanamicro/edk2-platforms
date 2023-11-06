@@ -1,0 +1,65 @@
+## @file
+#
+#  Component description file for the SynQuacer DXE platform driver.
+#
+#  Copyright (c) 2017, Linaro, Ltd. All rights reserved.<BR>
+#  Copyright (c) 2022, Ventana Micro Systems Inc. All Rights Reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x0001001A
+  BASE_NAME                      = PlatformDxe
+  FILE_GUID                      = d5ec682f-82da-4ff2-8c3c-1e34eab655ab
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PlatformDxeEntryPoint
+
+[Sources]
+  PlatformDxe.c
+  AcpiMadt.c
+  AcpiRhct.c
+
+[Packages]
+  EmbeddedPkg/EmbeddedPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  Platform/VentanaMicro/Thunderhill/Thunderhill.dec
+  Silicon/VentanaMicro/VentanaMicro.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  DevicePathLib
+  DxeServicesLib
+  IoLib
+  MemoryAllocationLib
+  NonDiscoverableDeviceRegistrationLib
+  PcdLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiLib
+  UefiRuntimeServicesTableLib
+  AcpiLib
+  FdtLib
+  HobLib
+
+[Guids]
+  gEfiAcpiTableGuid
+  gEfiAcpi10TableGuid
+  gEfiEventReadyToBootGuid
+  gFdtHobGuid
+
+[Protocols]
+  gEdkiiNonDiscoverableDeviceProtocolGuid         ## PRODUCES
+  gEfiAcpiTableProtocolGuid                       ## ALWAYS_CONSUMED
+
+[FixedPcd]
+
+[Pcd]
+
+[Depex]
+  TRUE

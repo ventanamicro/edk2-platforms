@@ -1,0 +1,43 @@
+## @file  U5SeriesPkg.dec
+# This Package provides modules and libraries.
+#
+# Copyright (c) 2022, Ventana Micro Systems Inc. All Rights Reserved.<BR>
+#
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x0001001b
+  PACKAGE_NAME                   = Thunderhill
+  PACKAGE_UNI_FILE               = Thunderhill.uni
+  PACKAGE_GUID                   = e5602182-8956-4248-8f30-cf398c0b813a
+  PACKAGE_VERSION                = 1.0
+
+[Includes]
+  Include
+
+[LibraryClasses]
+
+[Guids]
+  gThunderhillTokenSpaceGuid  = {0x34f1459b, 0x3c2b, 0x4237, { 0x95, 0x02, 0x17, 0x37, 0xed, 0x0c, 0xb6, 0xdd }}
+
+  gThunderhillPlatformDxeGuid = { 0x91e7c637, 0x5225, 0x48c4, { 0x81, 0x22, 0xfe, 0x8a, 0x8b, 0x4e, 0x3e, 0x7e }}
+
+[PcdsFixedAtBuild]
+  gThunderhillTokenSpaceGuid.PcdUartInterrupt|37|UINT32|0x00001000
+  gThunderhillTokenSpaceGuid.PcdUartBase|0x4219c000|UINT64|0x00001009
+  gThunderhillTokenSpaceGuid.PcdUartClk|0x0|UINT64|0x00001010
+
+[PcdsFixedAtBuild, PcdsDynamic, PcdsDynamicEx]
+  # Smbios
+  gThunderhillTokenSpaceGuid.PcdSmbiosTables1MajorVersion|0|UINT8|0x00002010
+  gThunderhillTokenSpaceGuid.PcdSmbiosTables1MinorVersion|0|UINT8|0x00002011
+  gThunderhillTokenSpaceGuid.PcdSmbiosTables0BiosReleaseDate|"MM/DD/YYYY"|VOID*|0x00002012 # Must follow this MM/DD/YYYY SMBIOS date format
+
+  # Misc
+  gThunderhillTokenSpaceGuid.PcdFdSize|0|UINT32|0x00002013
+  gThunderhillTokenSpaceGuid.PcdFdBaseAddress|0|UINT64|0x00002014
+
+[UserExtensions.TianoCore."ExtraFiles"]
+  Thunderhill.uni

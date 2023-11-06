@@ -1,0 +1,24 @@
+/** @file
+  Differentiated System Description Table Fields (DSDT)
+
+  Copyright (c) 2022, Ventana Micro Systems Inc. All Rights Reserved.<BR>
+
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+
+**/
+
+#include <Platform/Acpi.h>
+
+Scope (\_SB)
+{
+  Device (C000)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 0)  // _UID: Unique ID
+  }
+  Device (C001)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 1)  // _UID: Unique ID
+  }
+} // Scope(_SB)

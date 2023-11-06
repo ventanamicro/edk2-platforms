@@ -1,0 +1,30 @@
+## @file
+#
+#  ACPI table data and ASL sources required to boot the platform.
+#
+#  Copyright (c) 2022, Ventana Micro Systems Inc. All Rights Reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x0001001B
+  BASE_NAME                      = ThunderhillAcpiTables
+  FILE_GUID                      = a9b0d3e0-9569-4bc4-ad25-4d6c109e88e1
+  MODULE_TYPE                    = USER_DEFINED
+  VERSION_STRING                 = 1.0
+
+[Sources]
+  Dsdt.asl
+  Mcfg.aslc
+  Spcr.aslc
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  Platform/VentanaMicro/Thunderhill/Thunderhill.dec
+  Silicon/VentanaMicro/VentanaMicro.dec
+
+[FixedPcd]
+
