@@ -18,6 +18,7 @@
 [Sources]
   Dsdt.asl
   Mcfg.aslc
+  Spcr.aslc
 
 [Packages]
   MdePkg/MdePkg.dec
