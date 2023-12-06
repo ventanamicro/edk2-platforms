@@ -11,7 +11,7 @@
 #define ACPI_PLATFORM_H_
 
 #define EFI_ACPI_VENTANA_OEM_ID           'V','N','T','A','N','A'   // OEMID 6 bytes long
-#define EFI_ACPI_VENTANA_OEM_TABLE_ID     SIGNATURE_64 ('O','R','B','I','T','E','R',' ') // OEM table id 8 bytes long
+#define EFI_ACPI_VENTANA_OEM_TABLE_ID     SIGNATURE_64 ('V','E','N','T','A','N','A',' ') // OEM table id 8 bytes long
 #define EFI_ACPI_VENTANA_OEM_REVISION     0x00000001
 #define EFI_ACPI_VENTANA_CREATOR_ID       SIGNATURE_32 ('V','N','T','N')
 #define EFI_ACPI_VENTANA_CREATOR_REVISION 0x00000001

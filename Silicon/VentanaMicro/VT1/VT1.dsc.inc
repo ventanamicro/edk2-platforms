@@ -343,14 +343,14 @@
 !ifdef $(FIRMWARE_VER)
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"$(FIRMWARE_VER)"
 !else
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"orbiter-dev"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"ventana-dev"
 !endif
 
   # ACPI
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiExposedTableVersions|0x20
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"Vetana"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x204F524249544552 #ORBITER
-  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId|0x564E544E # VNTN
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x20414E41544E4556 #VENTANA
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId|0x4E544E56 # VNTN
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorRevision|0x000000001
 
   # SMBIOS - prevent 32bit table installation
