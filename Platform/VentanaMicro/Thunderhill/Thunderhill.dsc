@@ -76,7 +76,8 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialBaudRate|9600
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseHardwareFlowControl|FALSE
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialClockRate|100000000
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterStride|1
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterStride|4
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterAccessWidth|32
 
   # Use emulator variable for now
   gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable | TRUE
