@@ -35,12 +35,22 @@ DefinitionBlock("", "DSDT", 1, "VNTANA", "VENTANA ", EFI_ACPI_VENTANA_OEM_REVISI
       Name (_DSD, Package (0x02)  // _DSD: Device-Specific Data
       {
         ToUUID ("daffd814-6eba-4d8c-8a91-bc9bbf4aa301") /* Device Properties for _DSD */,
-        Package (0x01)
+        Package (0x03)
         {
           Package (0x02)
           {
             "clock-frequency",
             0x5F5E100 //FIXME: HW value
+          },
+          Package (0x02)
+          {
+            "reg-shift",
+            0x2
+          },
+          Package (0x02)
+          {
+            "reg-io-width",
+            0x4
           }
         }
       })
