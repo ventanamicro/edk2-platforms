@@ -9,36 +9,6 @@
 
 Scope (\_SB)
 {
-  // GSI0
-  Device (GSI0) {
-    Name (_HID, "PNP0C0F")
-
-    Name (_UID, 0)
-
-    Name (_PRS, ResourceTemplate() {
-        Interrupt(ResourceProducer, Level, ActiveHigh, Exclusive) {7}
-    })
-
-    Name (_CRS, ResourceTemplate() {
-        Interrupt(ResourceProducer, Level, ActiveHigh, Exclusive) {7}
-    })
-  }
-
-  // GSI1
-  Device (GSI1) {
-    Name (_HID, "PNP0C0F")
-
-    Name (_UID, 0)
-
-    Name (_PRS, ResourceTemplate() {
-        Interrupt(ResourceProducer, Level, ActiveHigh, Exclusive) {8}
-    })
-
-    Name (_CRS, ResourceTemplate() {
-        Interrupt(ResourceProducer, Level, ActiveHigh, Exclusive) {8}
-    })
-  }
-
   // RC0
   Device (PCI0) {
     //
@@ -99,9 +69,6 @@ Scope (\_SB)
       // Routing for device 0, all functions.
       //
       Package() {0x0000FFFF, 0, 0, 7}, /* FIXME: Check with HW */
-    //  Package() {0x0001FFFF, 1, 0, 47},
-    //  Package() {0x0001FFFF, 2, 0, 48},
-    //  Package() {0x0001FFFF, 3, 0, 49},
     })
 
     //
@@ -358,9 +325,6 @@ Scope (\_SB)
       // Routing for device 0, all functions.
       //
       Package() {0x0000FFFF, 0, 0, 8}, /* FIXME: Check with HW */
-//      Package() {0x0001FFFF, 1, 0, 67},
-//      Package() {0x0001FFFF, 2, 0, 68},
-//      Package() {0x0001FFFF, 3, 0, 69},
     })
 
     //
