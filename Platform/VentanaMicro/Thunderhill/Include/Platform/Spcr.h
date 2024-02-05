@@ -34,7 +34,7 @@
 #define EFI_ACPI_GLOBAL_SYSTEM_INTERRUPT            0x01 // GSI
 #define EFI_ACPI_BAUD_RATE                          0x07 // 115200
 #define EFI_ACPI_PARITY                             0x00 // No parity
-#define EFI_ACPI_STOP_BITS                          0x00 // 0 stop bit
+#define EFI_ACPI_STOP_BITS                          0x01 // 1 stop bit
 #define EFI_ACPI_FLOW_CONTROL                       0x00 // No flow control
 #define EFI_ACPI_TERMINAL_TYPE                      0x03 // ANSI
 #define EFI_ACPI_LANGUAGE                           0x00 // Reserved
