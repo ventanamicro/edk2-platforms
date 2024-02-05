@@ -13,7 +13,7 @@ Device (PDRC) {
   Name (_UID, 1)
 
   Name (PDRS, ResourceTemplate() {
-      QWordMemory (         // PCIE0 1TB CFG region for ECAM
+      QWordMemory (         // PCIE0 32M CFG region for ECAM
       ResourceProducer,     // ResourceUsage
       PosDecode,            // Decode
       MinFixed,             // IsMinFixed
@@ -27,7 +27,7 @@ Device (PDRC) {
       0x0000000002000000    // RangeLength - LEN
     )
 
-    QWordMemory (           // PCIE1 1TB CFG region for ECAM
+    QWordMemory (           // PCIE1 32M CFG region for ECAM
       ResourceProducer,     // ResourceUsage
       PosDecode,            // Decode
       MinFixed,             // IsMinFixed

@@ -35,7 +35,7 @@ EFI_ACPI_MEMORY_MAPPED_CONFIGURATION_SPACE_ACCESS_DESCRIPTION_TABLE Mcfg = {
       mPcieEcamBase[0],
       0,
       0,
-      0x1,
+      31,
       EFI_ACPI_RESERVED_DWORD
     },
   }

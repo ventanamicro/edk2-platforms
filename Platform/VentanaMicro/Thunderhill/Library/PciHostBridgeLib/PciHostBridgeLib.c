@@ -160,6 +160,7 @@ PciHostBridgeGetRootBridges (
 
     /*
      * Register MMIO64
+     */
     Status = gDS->AddMemorySpace (
                     EfiGcdMemoryTypeMemoryMappedIo,
                     Mmio64Base[Idx],
@@ -173,7 +174,6 @@ PciHostBridgeGetRootBridges (
                     EFI_MEMORY_UC | EFI_MEMORY_RUNTIME);
     ASSERT_EFI_ERROR (Status);
 
-     */
     /*
      * Some devices need IO resource to work correctly.
      * For RISCV, IO access is the same of MMIO so reserve IO_SIZE from MMIO32 for it

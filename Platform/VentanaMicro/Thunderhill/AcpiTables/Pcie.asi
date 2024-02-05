@@ -89,8 +89,8 @@ Scope (\_SB)
         //
         // Declare the range of bus numbers assigned to this root
         // complex. In this example, the minimum bus number will be
-        // 0, the maximum bus number will be 0xFF, supporting
-        // 256 busses total.
+        // 0, the maximum bus number will be 31, supporting
+        // 32 busses total.
         // Section 19.5.141
         //
         WordBusNumber (
@@ -100,9 +100,9 @@ Scope (\_SB)
           PosDecode,  // Decode
           0,          // AddressGranularity
           0,          // AddressMinimum - Minimum Bus Number
-          1,        // AddressMaximum - Maximum Bus Number
+          31,         // AddressMaximum - Maximum Bus Number
           0,          // AddressTranslation - Set to 0
-          2)        // RangeLength - Number of Busses
+          32)         // RangeLength - Number of Busses
 
         QWordMemory (
           ResourceProducer,     // ResourceUsage
@@ -345,8 +345,8 @@ Scope (\_SB)
         //
         // Declare the range of bus numbers assigned to this root
         // complex. In this example, the minimum bus number will be
-        // 0, the maximum bus number will be 0xFF, supporting
-        // 256 busses total.
+        // 0, the maximum bus number will be 31, supporting
+        // 32 busses total.
         // Section 19.5.141
         //
         WordBusNumber (
@@ -356,9 +356,9 @@ Scope (\_SB)
           PosDecode,  // Decode
           0,          // AddressGranularity
           0,          // AddressMinimum - Minimum Bus Number
-          1,        // AddressMaximum - Maximum Bus Number
+          31,         // AddressMaximum - Maximum Bus Number
           0,          // AddressTranslation - Set to 0
-          2)        // RangeLength - Number of Busses
+          32)         // RangeLength - Number of Busses
 
         QWordMemory (
           ResourceProducer,     // ResourceUsage
