@@ -77,7 +77,7 @@ INF  RuleOverride=ACPITABLE Silicon/VentanaMicro/VT1/AcpiTables/AcpiTables.inf
 #
 # PCIe Support
 #
-INF  OvmfPkg/RiscVVirt/PciCpuIo2Dxe/PciCpuIo2Dxe.inf
+INF  UefiCpuPkg/CpuMmio2Dxe/CpuMmio2Dxe.inf
 INF  MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
 INF  MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
 
