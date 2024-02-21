@@ -89,7 +89,7 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId|0x4E544E56 # VNTN
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorRevision|0x000000001
 
-  gUefiCpuPkgTokenSpaceGuid.PcdCpuCoreCrystalClockFrequency|100000000
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuCoreCrystalClockFrequency|2812500
 
 [PcdsDynamicExDefault.common.DEFAULT]
 !if $(CAPSULE_ENABLE) == TRUE
