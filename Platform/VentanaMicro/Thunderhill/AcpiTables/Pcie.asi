@@ -332,7 +332,7 @@ Scope (\_SB)
     // Section 6.2.2
     //
     Method (_CBA, 0, Serialized) {
-      Return (0x22000000)
+      Return (0x60000000)
     }
 
     Method (_CRS, 0, Serialized) {
@@ -368,8 +368,8 @@ Scope (\_SB)
           NonCacheable,         // NonCacheable
           ReadWrite,            // ReadAndWrite
           0x0000000000000000,   // AddressGranularity - GRA
-          0x0000000060000000,   // AddressMinimum - MIN
-          0x000000007FFFFFFF,   // AddressMaximum - MAX
+          0x0000000080000000,   // AddressMinimum - MIN
+          0x000000009FFFFFFF,   // AddressMaximum - MAX
           0x0000000000000000,   // AddressTranslation - TRA
           0x0000000020000000    // RangeLength - LEN
         )

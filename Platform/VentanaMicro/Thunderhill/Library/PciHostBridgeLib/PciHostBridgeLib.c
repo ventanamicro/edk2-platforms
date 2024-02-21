@@ -78,7 +78,7 @@ STATIC PCI_ROOT_BRIDGE  mPciRootBridgeTemplate = {
      0 /* Max - fill in */
   }, {
     // MemAbove4G
-     0,/* Min - fill in */
+     MAX_UINT64,
      0/* Max - fill in */
   }, {
     // PMem
@@ -107,12 +107,10 @@ PciHostBridgeGetRootBridges (
   UINTN  *Count
   )
 {
-  EFI_PHYSICAL_ADDRESS  EcamBase[] = { THUNDERHILL_PCIE_ECAM };
-  UINT64                EcamSize[] = { THUNDERHILL_PCIE_ECAM_SIZE };
-  EFI_PHYSICAL_ADDRESS  Mmio32Base[] = { THUNDERHILL_PCIE_MMIO32 };
-  UINT32                Mmio32Size[] = { THUNDERHILL_PCIE_MMIO32_SIZE };
-  EFI_PHYSICAL_ADDRESS  Mmio64Base[] = { THUNDERHILL_PCIE_MMIO64 };
-  UINT64                Mmio64Size[] = { THUNDERHILL_PCIE_MMIO64_SIZE };
+  EFI_PHYSICAL_ADDRESS  EcamBase[] = { THUNDERHILL_PCIE0_ECAM, THUNDERHILL_PCIE1_ECAM };
+  UINT64                EcamSize[] = { THUNDERHILL_PCIE0_ECAM_SIZE, THUNDERHILL_PCIE1_ECAM_SIZE };
+  EFI_PHYSICAL_ADDRESS  Mmio32Base[] = { THUNDERHILL_PCIE0_MMIO32, THUNDERHILL_PCIE1_MMIO32 };
+  UINT32                Mmio32Size[] = { THUNDERHILL_PCIE0_MMIO32_SIZE, THUNDERHILL_PCIE1_MMIO32_SIZE };
   EFI_STATUS            Status;
   UINT32                Idx;
 
@@ -159,20 +157,8 @@ PciHostBridgeGetRootBridges (
     ASSERT_EFI_ERROR (Status);
 
     /*
-     * Register MMIO64
+     * No need to Register MMIO64 since there is no 32bit MMIO in TH
      */
-    Status = gDS->AddMemorySpace (
-                    EfiGcdMemoryTypeMemoryMappedIo,
-                    Mmio64Base[Idx],
-                    Mmio64Size[Idx],
-                    EFI_MEMORY_UC | EFI_MEMORY_RUNTIME);
-    ASSERT_EFI_ERROR (Status);
-
-    Status = gDS->SetMemorySpaceAttributes (
-                    Mmio64Base[Idx],
-                    Mmio64Size[Idx],
-                    EFI_MEMORY_UC | EFI_MEMORY_RUNTIME);
-    ASSERT_EFI_ERROR (Status);
 
     /*
      * Some devices need IO resource to work correctly.
@@ -185,10 +171,6 @@ PciHostBridgeGetRootBridges (
     mRPList[Idx].Mem.Base = Mmio32Base[Idx];
     mRPList[Idx].Mem.Limit =  Mmio32Base[Idx] + Mmio32Size[Idx] - 1;
     mRPList[Idx].Mem.Translation = 0;
-
-    mRPList[Idx].MemAbove4G.Base = Mmio64Base[Idx];
-    mRPList[Idx].MemAbove4G.Limit = Mmio64Base[Idx] + Mmio64Size[Idx] - 1;
-    mRPList[Idx].MemAbove4G.Translation = 0;
 
     mRPList[Idx].DevicePath = (EFI_DEVICE_PATH_PROTOCOL *)AllocateZeroPool (sizeof (PciRootBridgeDevicePathTemplate));
     CopyMem ((VOID *)mRPList[Idx].DevicePath, (VOID *) &PciRootBridgeDevicePathTemplate, sizeof (PciRootBridgeDevicePathTemplate));
