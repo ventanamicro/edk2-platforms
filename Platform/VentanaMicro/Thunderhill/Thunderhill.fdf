@@ -77,9 +77,11 @@ INF  RuleOverride=ACPITABLE Silicon/VentanaMicro/VT1/AcpiTables/AcpiTables.inf
 #
 # PCIe Support
 #
-INF  UefiCpuPkg/CpuMmio2Dxe/CpuMmio2Dxe.inf
-INF  MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
-INF  MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+!if $(TH_PCI_DISABLE) == FALSE
+ INF  UefiCpuPkg/CpuMmio2Dxe/CpuMmio2Dxe.inf
+ INF  MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
+ INF  MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+!endif
 
 #
 # Video support

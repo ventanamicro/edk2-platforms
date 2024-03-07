@@ -47,6 +47,11 @@
   #
   DEFINE CAPSULE_ENABLE           = FALSE
 
+  #
+  # Disable PCI for bring up only
+  #
+  DEFINE TH_PCI_DISABLE           = FALSE
+
 [BuildOptions]
   GCC:RELEASE_*_*_CC_FLAGS       = -DMDEPKG_NDEBUG
 !ifdef $(SOURCE_DEBUG_ENABLE)
@@ -182,6 +187,7 @@
   #
   # PCIe Support
   #
+!if $(TH_PCI_DISABLE) == FALSE
   UefiCpuPkg/CpuMmio2Dxe/CpuMmio2Dxe.inf {
     <LibraryClasses>
       NULL|OvmfPkg/Fdt/FdtPciPcdProducerLib/FdtPciPcdProducerLib.inf
@@ -193,6 +199,7 @@
 
   }
   MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+!endif
 
 !if $(CAPSULE_ENABLE) == TRUE
   # FMP image decriptor
