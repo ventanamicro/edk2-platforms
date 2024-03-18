@@ -1,0 +1,40 @@
+/dts-v1/;
+
+/ {
+        description = "Configuration file to create FIT image containing OpenSBI and EDK2";
+        #address-cells = <0x01>;
+        fit,fdt-list = "of-list";
+
+        images {
+                edk2 {
+                        description = "EDK2";
+                        type = "standalone";
+                        os = "u-boot";
+                        arch = "riscv";
+                        compression = "none";
+                        load = <0x80200000>;
+                        entry = <0x80200000>;
+                        data = /incbin/("Build/VentanaSynth/DEBUG_GCC5/FV/VENTANASYNTH.fd");
+                };
+
+                opensbi {
+                        description = "OpenSBI fw_dynamic Firmware";
+                        type = "firmware";
+                        os = "opensbi";
+                        arch = "riscv";
+                        compression = "none";
+                        load = <0x87000000>;
+                        entry = <0x87000000>;
+                        data = /incbin/("synth_fw_dynamic.bin");
+                };
+        };
+
+        configurations {
+                default = "conf-1";
+                conf-1 {
+                        description = "EDK2 and OpenSBI FIT";
+                        firmware = "opensbi";
+                        loadables = "edk2";
+                };
+        };
+};
