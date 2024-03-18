@@ -1,0 +1,174 @@
+/** @file
+  Differentiated System Description Table Fields (DSDT)
+
+  Copyright (c) 2022, Ventana Micro Systems Inc. All Rights Reserved.<BR>
+
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+
+**/
+
+#include <Platform/Acpi.h>
+
+Scope (\_SB)
+{
+  Device (C000)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 0)  // _UID: Unique ID
+  }
+  Device (C001)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 1)  // _UID: Unique ID
+  }
+  Device (C002)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 2)  // _UID: Unique ID
+  }
+  Device (C003)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 3)  // _UID: Unique ID
+  }
+  Device (C004)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 4)  // _UID: Unique ID
+  }
+  Device (C005)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 5)  // _UID: Unique ID
+  }
+  Device (C006)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 6)  // _UID: Unique ID
+  }
+  Device (C007)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 7)  // _UID: Unique ID
+  }
+  Device (C008)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 8)  // _UID: Unique ID
+  }
+  Device (C009)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 9)  // _UID: Unique ID
+  }
+  Device (C00A)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 10)  // _UID: Unique ID
+  }
+  Device (C00B)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 11)  // _UID: Unique ID
+  }
+  Device (C00C)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 12)  // _UID: Unique ID
+  }
+  Device (C00D)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 13)  // _UID: Unique ID
+  }
+  Device (C00E)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 14)  // _UID: Unique ID
+  }
+  Device (C00F)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 15)  // _UID: Unique ID
+  }
+  Device (C010)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 16)  // _UID: Unique ID
+  }
+  Device (C011)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 17)  // _UID: Unique ID
+  }
+  Device (C012)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 18)  // _UID: Unique ID
+  }
+  Device (C013)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 19)  // _UID: Unique ID
+  }
+  Device (C014)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 20)  // _UID: Unique ID
+  }
+  Device (C015)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 21)  // _UID: Unique ID
+  }
+  Device (C016)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 22)  // _UID: Unique ID
+  }
+  Device (C017)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 23)  // _UID: Unique ID
+  }
+  Device (C018)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 24)  // _UID: Unique ID
+  }
+  Device (C019)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 25)  // _UID: Unique ID
+  }
+  Device (C01A)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 26)  // _UID: Unique ID
+  }
+  Device (C01B)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 27)  // _UID: Unique ID
+  }
+  Device (C01C)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 28)  // _UID: Unique ID
+  }
+  Device (C01D)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 29)  // _UID: Unique ID
+  }
+  Device (C01E)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 30)  // _UID: Unique ID
+  }
+  Device (C01F)
+  {
+      Name (_HID, "ACPI0007" /* Processor Device */)  // _HID: Hardware ID
+      Name (_UID, 31)  // _UID: Unique ID
+  }
+} // Scope(_SB)

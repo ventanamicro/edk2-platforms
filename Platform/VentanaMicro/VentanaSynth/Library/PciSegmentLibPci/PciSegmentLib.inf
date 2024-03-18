@@ -1,0 +1,34 @@
+## @file
+#  Instance of PCI Segment Library based on PCI Library.
+#
+#  PCI Segment Library that layers on top of the PCI Library which only
+#   supports segment 0 PCI configuration access.
+#
+#  Copyright (c) 2016 - 2018, Intel Corporation. All rights reserved.<BR>
+#  Copyright (c) 2022, Ventana Micro Systems Inc. All Rights Reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PciSegmentLib
+  MODULE_UNI_FILE                = PciSegmentLib.uni
+  FILE_GUID                      = B659EC63-E18C-4DF9-95CC-3CCEEC2E0194
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PciSegmentLib
+
+[Sources]
+  PciSegmentLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  Platform/VentanaMicro/VentanaSynth/VentanaSynth.dec
+  Silicon/VentanaMicro/VentanaMicro.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
