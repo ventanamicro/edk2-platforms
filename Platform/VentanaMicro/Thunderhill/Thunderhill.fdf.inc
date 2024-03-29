@@ -10,12 +10,12 @@
 DEFINE BLOCK_SIZE                  = 0x1000
 
 DEFINE FW_BASE_ADDRESS             = 0x400200000
-DEFINE FW_SIZE                     = 0x00800000
-DEFINE FW_BLOCKS                   = 0x800
+DEFINE FW_SIZE                     = 0x00300000
+DEFINE FW_BLOCKS                   = 0x300
 
 DEFINE CODE_BASE_ADDRESS           = $(FW_BASE_ADDRESS)
-DEFINE CODE_SIZE                   = 0x00740000
-DEFINE CODE_BLOCKS                 = 0x740
+DEFINE CODE_SIZE                   = 0x00240000
+DEFINE CODE_BLOCKS                 = 0x240
 
 DEFINE VARS_SIZE                    = 0x000C0000
 DEFINE VARS_BLOCK_SIZE              = 0x40000
