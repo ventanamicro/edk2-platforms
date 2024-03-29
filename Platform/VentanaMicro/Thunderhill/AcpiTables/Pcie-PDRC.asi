@@ -27,19 +27,19 @@ Device (PDRC) {
       0x0000000002000000    // RangeLength - LEN
     )
 
-    QWordMemory (           // PCIE1 32M CFG region for ECAM
-      ResourceProducer,     // ResourceUsage
-      PosDecode,            // Decode
-      MinFixed,             // IsMinFixed
-      MaxFixed,             // IsMaxFixed
-      Cacheable,            // Cacheable
-      ReadWrite,            // ReadAndWrite
-      0x0000000000000000,   // AddressGranularity - GRA
-      0x0000000060000000,   // AddressMinimum - MIN
-      0x0000000061ffffff,   // AddressMaximum - MAX
-      0x0000000000000000,   // AddressTranslation - TRA
-      0x0000000002000000    // RangeLength - LEN
-    )
+//    QWordMemory (           // PCIE1 32M CFG region for ECAM
+//      ResourceProducer,     // ResourceUsage
+//      PosDecode,            // Decode
+//      MinFixed,             // IsMinFixed
+//      MaxFixed,             // IsMaxFixed
+//      Cacheable,            // Cacheable
+//      ReadWrite,            // ReadAndWrite
+//      0x0000000000000000,   // AddressGranularity - GRA
+//      0x0000000060000000,   // AddressMinimum - MIN
+//      0x0000000061ffffff,   // AddressMaximum - MAX
+//      0x0000000000000000,   // AddressTranslation - TRA
+//      0x0000000002000000    // RangeLength - LEN
+//    )
 
   })
 

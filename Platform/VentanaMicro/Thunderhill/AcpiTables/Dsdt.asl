@@ -59,6 +59,7 @@ DefinitionBlock("", "DSDT", 1, "VNTANA", "VENTANA ", EFI_ACPI_VENTANA_OEM_REVISI
     Device (ETH0)
     {
       Name (_HID, "XLXFFFF") // _HID: Hardware ID
+      Name (_CCA, 0x0)
       Name (_UID, Zero)  // _UID: Unique ID
       Name (_CRS, ResourceTemplate ()
       {
