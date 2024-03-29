@@ -77,7 +77,7 @@ DefinitionBlock("", "DSDT", 1, "VNTANA", "VENTANA ", EFI_ACPI_VENTANA_OEM_REVISI
           {
             Package () {"phy-mode", "rgmii"},
             Package () {"xlnx,rxmem", 0x1000},
-            Package () {"local-mac-address", Package () { 0x52, 0x54, 0x00, 0x12, 0x34, 0x00 }}, // 6-bytes
+            Package () {"local-mac-address", Package () { 0x52, 0x54, 0x00, 0x12, 0x34, 0x56 }}, // 6-bytes
             Package () { "compatible", "xlnx,axi-ethernet-1.00.a" },
             Package () { "phy-handle", \_SB.ETH0.MDIO.PHY1}
           },
