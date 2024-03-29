@@ -81,6 +81,7 @@ INF  RuleOverride=ACPITABLE Silicon/VentanaMicro/VT1/AcpiTables/AcpiTables.inf
  INF  UefiCpuPkg/CpuMmio2Dxe/CpuMmio2Dxe.inf
  INF  MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf
  INF  MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+ INF  EmbeddedPkg/Drivers/NonCoherentIoMmuDxe/NonCoherentIoMmuDxe.inf
 !endif
 
 #
