@@ -64,15 +64,15 @@ Scope (\_SB)
     // associated with the root complex and hierarchy below it.
     // Section 6.2.12
     //
-    Name (_PRT, Package() {
+    // Name (_PRT, Package() {
       //
       // Routing for device 0, all functions.
       //
-      Package() {0x0000FFFF, 0, \_SB.PCI0.GSI0, 1}, /* FIXME: Check with HW */
-      Package() {0x0000FFFF, 1, \_SB.PCI0.GSI0, 2}, /* FIXME: Check with HW */
-      Package() {0x0000FFFF, 2, \_SB.PCI0.GSI0, 3}, /* FIXME: Check with HW */
-      Package() {0x0000FFFF, 3, \_SB.PCI0.GSI0, 4}  /* FIXME: Check with HW */
-    })
+     // Package() {0x0000FFFF, 0, \_SB.PCI0.GSI0, 1}, /* FIXME: Check with HW */
+     // Package() {0x0000FFFF, 1, \_SB.PCI0.GSI0, 2}, /* FIXME: Check with HW */
+     // Package() {0x0000FFFF, 2, \_SB.PCI0.GSI0, 3}, /* FIXME: Check with HW */
+     // Package() {0x0000FFFF, 3, \_SB.PCI0.GSI0, 4}  /* FIXME: Check with HW */
+     // })
 
     //
     // Declare the resources assigned to this root complex.
@@ -262,20 +262,6 @@ Scope (\_SB)
       // Device 0, Function 0.
       //
       Name (_ADR, 0x00000000)
-   }
-   // GSI0
-   Device (GSI0) {
-     Name (_HID, "VNTN0002")
- 
-     Name (_UID, 0)
-
-     Name (_PRS, ResourceTemplate() {
-          Interrupt(ResourceProducer, Level, ActiveHigh, Exclusive) {7}
-     })
-
-     Name (_CRS, ResourceTemplate() {
-          Interrupt(ResourceProducer, Level, ActiveHigh, Exclusive) {7}
-     })
     }
     Method (_PXM, 0, NotSerialized) {
       Return(0x00)
