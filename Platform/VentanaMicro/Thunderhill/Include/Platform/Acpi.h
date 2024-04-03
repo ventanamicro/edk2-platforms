@@ -10,13 +10,25 @@
 #ifndef ACPI_H_
 #define ACPI_H_
 
-#define THUNDERHILL_ACPI_HEADER(Signature, Type, Revision) {              \
+#define THUNDERHILL_ACPI_HEADER(Signature, Type, Revision) {          \
     Signature,                          /* UINT32  Signature */       \
     sizeof (Type),                      /* UINT32  Length */          \
     Revision,                           /* UINT8   Revision */        \
     0,                                  /* UINT8   Checksum */        \
     { 'V', 'N', 'T', 'A', 'N', 'A' },   /* UINT8   OemId[6] */        \
     0x20414E41544E4556ULL,              /* UINT64  OemTableId */      \
+    1,                                  /* UINT32  OemRevision */     \
+    0x4E544E56,                         /* UINT32  CreatorId */       \
+    1                                   /* UINT32  CreatorRevision */ \
+  }
+
+#define THUNDERHILL_XILINX_ACPI_HEADER(Signature, Type, Revision) {   \
+    Signature,                          /* UINT32  Signature */       \
+    sizeof (Type),                      /* UINT32  Length */          \
+    Revision,                           /* UINT8   Revision */        \
+    0,                                  /* UINT8   Checksum */        \
+    { 'V', 'N', 'T', 'A', 'N', 'A' },   /* UINT8   OemId[6] */        \
+    0x2020584E494C4958ULL,              /* UINT64  OemTableId */      \
     1,                                  /* UINT32  OemRevision */     \
     0x4E544E56,                         /* UINT32  CreatorId */       \
     1                                   /* UINT32  CreatorRevision */ \
