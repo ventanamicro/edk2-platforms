@@ -198,7 +198,7 @@ typedef struct {
     /* Guaranteed Performance Register */                                      \
     ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
     /* Desired Performance Register */                                         \
-    ResourceTemplate () { Register (FFixedHW, 32, 0, 0x00000005, 3) },         \
+    ResourceTemplate () { Register (FFixedHW, 32, 0, 0x1000000000000005, 3) }, \
     /* Minimum Performance Register */                                         \
     ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
     /* Maximum Performance Register */                                         \
@@ -210,9 +210,9 @@ typedef struct {
     /* Counter Wraparound Time */                                              \
     ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
     /* Reference Performance Counter Register */                               \
-    ResourceTemplate () { Register (FFixedHW, 64, 0, 0x0000000B, 4) },         \
+    ResourceTemplate () { Register (FFixedHW, 64, 0, 0x100000000000000B, 4) }, \
     /* Delivered Performance Counter Register */                               \
-    ResourceTemplate () { Register (FFixedHW, 64, 0, 0x0000000C, 4) },         \
+    ResourceTemplate () { Register (FFixedHW, 64, 0, 0x100000000000000C, 4) }, \
     /* Performance Limited Register */                                         \
     ResourceTemplate () { Register (SystemMemory, 0, 0, 0, 0) },               \
     /* CPPC Enable Register */                                                 \
