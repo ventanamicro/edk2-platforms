@@ -124,6 +124,16 @@ InitializeRamRegions (
   EFI_PHYSICAL_ADDRESS VariableBase = 0x400940000;
   UINT32 FwVarSize = 0xC0000;
 
+  if (SystemMemoryBase > VariableBase) {
+    AddMemoryBaseSizeHob(SystemMemoryBase, SystemMemorySize);
+    BuildMemoryAllocationHob (
+      SystemMemoryBase,
+      SystemMemorySize,
+      EfiBootServicesData
+      );
+    return;
+  }
+
   DEBUG ((
     DEBUG_INFO,
     "%a: Variable Storage Starts:0x%lx End:0x%lx\n",
