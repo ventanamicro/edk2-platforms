@@ -95,7 +95,7 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorRevision|0x000000001
   gEfiMdeModulePkgTokenSpaceGuid.PcdPciMaxDeviceNumber|0
 
-  gUefiCpuPkgTokenSpaceGuid.PcdCpuCoreCrystalClockFrequency|2812500
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuCoreCrystalClockFrequency|5625000
 
   gEmbeddedTokenSpaceGuid.PcdDmaDeviceOffset|0x00000000
   gEmbeddedTokenSpaceGuid.PcdDmaDeviceLimit|0xffffffffffffffff
