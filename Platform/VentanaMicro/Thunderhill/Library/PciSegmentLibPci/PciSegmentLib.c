@@ -25,7 +25,7 @@
 #define PCIE_DBG(arg...)
 #endif
 
-STATIC EFI_PHYSICAL_ADDRESS  EcamBase[] = { THUNDERHILL_PCIE0_ECAM, THUNDERHILL_PCIE1_ECAM };
+STATIC EFI_PHYSICAL_ADDRESS  EcamBase[] = { THUNDERHILL_PCIE1_ECAM, THUNDERHILL_PCIE0_ECAM };
 
 /**
   Assert the validity of a PCI Segment address.
