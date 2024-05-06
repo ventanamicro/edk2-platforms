@@ -13,8 +13,8 @@
 #include <Platform/MemoryMap.h>
 #include <Platform/Soc.h>
 
-STATIC CONST UINT64 mPcieEcamBase[] = { THUNDERHILL_PCIE0_ECAM };
-//STATIC CONST UINT64 mPcieEcamBase[] = { THUNDERHILL_PCIE0_ECAM, THUNDERHILL_PCIE1_ECAM };
+//STATIC CONST UINT64 mPcieEcamBase[] = { THUNDERHILL_PCIE1_ECAM };
+STATIC CONST UINT64 mPcieEcamBase[] = { THUNDERHILL_PCIE1_ECAM, THUNDERHILL_PCIE0_ECAM };
 
 #pragma pack(push, 1)
 
@@ -39,13 +39,13 @@ EFI_ACPI_MEMORY_MAPPED_CONFIGURATION_SPACE_ACCESS_DESCRIPTION_TABLE Mcfg = {
       31,
       EFI_ACPI_RESERVED_DWORD
     },
-  //  {
-  //    mPcieEcamBase[1],
-  //    0,
-  //    0,
-  //    31,
-  //    EFI_ACPI_RESERVED_DWORD
-  //  },
+    {
+      mPcieEcamBase[1],
+      0,
+      0,
+      31,
+      EFI_ACPI_RESERVED_DWORD
+    },
   }
 };
 

@@ -17,9 +17,25 @@ DefinitionBlock("", "DSDT", 1, "VNTANA", "VENTANA ", EFI_ACPI_VENTANA_OEM_REVISI
 
   Scope (\_SB)
   {
+    Device (IC00)
+   {
+       Name (_HID, "RSCV0002") // _HID: Hardware ID
+       Name (_UID, Zero)  // _UID: Unique ID
+       Method(_GSB) {
+           Return (0x0) // Global System Interrupt Base for this APLIC starts at 0
+      }
+      Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+      {
+          Memory32Fixed (ReadWrite,
+            0x10008000,         // Address Base. FIXME: ISS/QEMU value
+            0x00008000,         // Address Length
+            )
+      })
+   }
     Device (COM0)
     {
       Name (_HID, "PNP0501") // _HID: Hardware ID
+//      Name (_HID, "RSCV0003") // _HID: Hardware ID
       Name (_UID, Zero)  // _UID: Unique ID
       Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
       {
