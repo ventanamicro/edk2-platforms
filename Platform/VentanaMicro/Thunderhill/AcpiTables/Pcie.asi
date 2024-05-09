@@ -298,6 +298,34 @@ Scope (\_SB)
       //
       Return (Buffer() {0})
     }
+
+    // Motherboard resource consumption for PCIE resource reservation
+    // as upstream discussion "ACPI namespace details for ARM64"
+    Device (PRC1) {
+      Name (_HID, EISAID("PNP0C02"))
+      Name (_UID, 1)
+    
+      Name (PDRS, ResourceTemplate() {
+        QWordMemory (           // PCIE1 32M CFG region for ECAM
+          ResourceProducer,     // ResourceUsage
+          PosDecode,            // Decode
+          MinFixed,             // IsMinFixed
+          MaxFixed,             // IsMaxFixed
+          NonCacheable,         // Cacheable
+          ReadWrite,            // ReadAndWrite
+          0x0000000000000000,   // AddressGranularity - GRA
+          0x0000000060000000,   // AddressMinimum - MIN
+          0x0000000061ffffff,   // AddressMaximum - MAX
+          0x0000000000000000,   // AddressTranslation - TRA
+          0x0000000002000000    // RangeLength - LEN
+        )
+      })
+    
+      // Current Resource Settings
+      Method (_CRS, 0, Serialized) {
+        Return (PDRS)
+      }
+    }
     //
     // Root Port 0 Device within the Root Complex.
     //
@@ -557,6 +585,35 @@ Scope (\_SB)
       //
       Return (Buffer() {0})
     }
+
+    // Motherboard resource consumption for PCIE resource reservation
+    // as upstream discussion "ACPI namespace details for ARM64"
+    Device (PRC0) {
+      Name (_HID, EISAID("PNP0C02"))
+      Name (_UID, 0)
+    
+      Name (PDRS, ResourceTemplate() {
+          QWordMemory (         // PCIE0 32M CFG region for ECAM
+          ResourceProducer,     // ResourceUsage
+          PosDecode,            // Decode
+          MinFixed,             // IsMinFixed
+          MaxFixed,             // IsMaxFixed
+          NonCacheable,         // Cacheable
+          ReadWrite,            // ReadAndWrite
+          0x0000000000000000,   // AddressGranularity - GRA
+          0x0000000020000000,   // AddressMinimum - MIN
+          0x0000000021ffffff,   // AddressMaximum - MAX
+          0x0000000000000000,   // AddressTranslation - TRA
+          0x0000000002000000    // RangeLength - LEN
+        )
+      })
+    
+      // Current Resource Settings
+      Method (_CRS, 0, Serialized) {
+        Return (PDRS)
+      }
+    }
+
     //
     // Root Port 0 Device within the Root Complex.
     //
