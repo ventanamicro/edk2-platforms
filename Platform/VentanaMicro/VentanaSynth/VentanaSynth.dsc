@@ -204,7 +204,7 @@
   #
   # Ethernet driver
   #
-  Platform/VentanaMicro/Orbiter/Drivers/GigUndiDxe/GigUndiDxe.inf
+  Platform/VentanaMicro/VentanaSynth/Drivers/GigUndiDxe/GigUndiDxe.inf
 
   # X86Emulator
   Silicon/VentanaMicro/X86EmulatorPkg/X86Emulator.inf
