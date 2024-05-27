@@ -33,8 +33,7 @@ DefinitionBlock("", "DSDT", 1, "VNTANA", "VENTANA ", EFI_ACPI_VENTANA_OEM_REVISI
    }
     Device (COM0)
     {
-      Name (_HID, "PNP0501") // _HID: Hardware ID
-//      Name (_HID, "RSCV0003") // _HID: Hardware ID
+      Name (_HID, "RSCV0003") // _HID: Hardware ID
       Name (_UID, Zero)  // _UID: Unique ID
       Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
       {
