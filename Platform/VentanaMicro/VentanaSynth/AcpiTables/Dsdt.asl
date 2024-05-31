@@ -13,7 +13,6 @@ DefinitionBlock("", "DSDT", 1, "VNTANA", "VENTANA ", EFI_ACPI_VENTANA_OEM_REVISI
 {
   Include ("Cpu.asi")
   Include ("Pcie.asi")
-  Include ("Pcie-PDRC.asi")
 
   Scope (\_SB)
   {
