@@ -1,0 +1,123 @@
+/** @file
+*  RISC-V I/O Mapping Table (RIMT)
+*
+*  Copyright (c) 2024, Ventana Micro Systems Inc. All rights reserved.
+*
+*  SPDX-License-Identifier: BSD-2-Clause-Patent
+*
+**/
+
+#include <IndustryStandard/Acpi.h>
+#include <IndustryStandard/Acpi65.h>
+#include <Platform/Acpi.h>
+#include <Platform/Rimt.h>
+
+#pragma pack(1)
+
+typedef struct
+{
+  EFI_ACPI_6_6_RISCV_IO_MAPPING_IOMMU_DEVICE     IommuDevice;
+  EFI_ACPI_6_6_RISCV_IO_MAPPING_GSI_INTERRUPT    WiredIrq[4];
+} RISCV_EFI_ACPI_6_6_RISCV_IO_MAPPING_IOMMU_DEVICE;
+
+typedef struct
+{
+  EFI_ACPI_6_6_RISCV_IO_MAPPING_PCI_ROOT_COMPLEX_DEVICE     PciRc;
+  EFI_ACPI_6_6_RISCV_IO_MAPPING_ID_TABLE                    PciRcIdMap;
+} RISCV_EFI_ACPI_6_6_RISCV_IO_MAPPING_PCI_NODE;
+
+typedef struct
+{
+  EFI_ACPI_6_6_RISCV_IO_MAPPING_TABLE              Header;
+  RISCV_EFI_ACPI_6_6_RISCV_IO_MAPPING_IOMMU_DEVICE IommuDevice;
+  RISCV_EFI_ACPI_6_6_RISCV_IO_MAPPING_PCI_NODE     PciRcDevice;
+} RISCV_EFI_ACPI_6_6_RISCV_IO_MAPPING_TABLE;
+
+#pragma pack ()
+
+RISCV_EFI_ACPI_6_6_RISCV_IO_MAPPING_TABLE Rimt =
+{
+  // EFI_ACPI_6_0_IO_REMAPPING_TABLE
+  {
+    VENTANASYNTH_ACPI_HEADER (
+      EFI_ACPI_6_6_RISCV_RIMT_TABLE_SIGNATURE,
+      RISCV_EFI_ACPI_6_6_RISCV_IO_MAPPING_TABLE,
+      EFI_ACPI_RISCV_IO_MAPPING_TABLE_REVISION_01
+    ),
+    2,  // NumNodes
+    sizeof (EFI_ACPI_6_6_RISCV_IO_MAPPING_TABLE),  // NodeOffset
+    0,  // Reserved
+  },
+  // IOMMU
+  {
+    // EFI_ACPI_6_6_RISCV_IO_MAPPING_IOMMU_DEVICE
+    {
+      // EFI_ACPI_6_6_RISCV_IO_MAPPING_DEVICE
+      {
+        EFI_ACPI_RIMT_TYPE_IOMMU, // Type
+        1, // Revision
+        sizeof (RISCV_EFI_ACPI_6_6_RISCV_IO_MAPPING_IOMMU_DEVICE), // Length
+        0,  // Reserved
+        0, // ID
+      },
+      {
+        0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0, // HardwareID
+      },
+      0x10050000, // BaseAddress
+      0,   // Flags
+      0,   // Proximity domain
+      0,   // PcieSegmentNumber
+      0,   // PcieBDF
+      4,   // NumGsiInterrupts
+      OFFSET_OF (RISCV_EFI_ACPI_6_6_RISCV_IO_MAPPING_IOMMU_DEVICE, WiredIrq),
+    },
+    // EFI_ACPI_6_6_RISCV_IO_MAPPING_GSI_INTERRUPT
+    {
+      {
+        0x14, // GsiNumber
+        0,    // Flags
+      },
+      {
+        0x15, // GsiNumber
+        0,    // Flags
+      },
+      {
+        0x16, // GsiNumber
+        0,    // Flags
+      },
+      {
+        0x17, // GsiNumber
+        0,    // Flags
+      },
+    },
+  },
+  // RISCV_EFI_ACPI_6_6_RISCV_IO_MAPPING_PCI_NODE
+  {
+    // EFI_ACPI_6_6_RISCV_IO_MAPPING_PCI_ROOT_COMPLEX_DEVICE
+    {
+      // EFI_ACPI_6_6_RISCV_IO_MAPPING_DEVICE
+      {
+        EFI_ACPI_RIMT_TYPE_PCI_ROOT_COMPLEX,  // Type
+        1,  // Revision
+        sizeof (RISCV_EFI_ACPI_6_6_RISCV_IO_MAPPING_PCI_NODE),  // Length
+        0,  // Reserved
+        1,  // ID
+      },
+      0,   // Flags
+      0,   // Reserved
+      0,   // PcieSegmentNumber
+      OFFSET_OF (RISCV_EFI_ACPI_6_6_RISCV_IO_MAPPING_PCI_NODE, PciRcIdMap),
+      1,   // NumIdMappings
+    },
+    // EFI_ACPI_6_6_RISCV_IO_MAPPING_ID_TABLE
+    {
+      0x0000, // InputBase
+      0xffff, // NumIds
+      0x0000, // OutputBase
+      OFFSET_OF (RISCV_EFI_ACPI_6_6_RISCV_IO_MAPPING_TABLE, IommuDevice), // OutputReference
+      0, // Flags
+    },
+  },
+};
+
+VOID* CONST ReferenceAcpiTable = &Rimt;

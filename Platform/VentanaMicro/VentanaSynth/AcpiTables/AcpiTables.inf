@@ -19,6 +19,7 @@
   Dsdt.asl
   Mcfg.aslc
   Spcr.aslc
+  Rimt.aslc
 
 [Packages]
   MdePkg/MdePkg.dec
