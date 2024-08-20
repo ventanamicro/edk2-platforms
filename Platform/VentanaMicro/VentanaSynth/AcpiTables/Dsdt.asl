@@ -69,6 +69,22 @@ DefinitionBlock("", "DSDT", 1, "VNTANA", "VENTANA ", EFI_ACPI_VENTANA_OEM_REVISI
         }
       })
     }
+    Device (IMMU)
+   {
+       Name (_HID, "RSCV0004") // _HID: Hardware ID
+       Name (_UID, Zero)  // _UID: Unique ID
+      Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+      {
+          Memory32Fixed (ReadWrite,
+            0x10050000,         // Address Base.
+            0x00001000,         // Address Length
+            )
+          Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
+          {
+            0x14, 0x15, 0x16, 0x17,
+          }
+      })
+   }
 
   } // Scope(\_SB)
 }
