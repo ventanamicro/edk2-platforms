@@ -177,7 +177,7 @@ MadtRintcImiscGenerate (EFI_ACPI_6_5_RISCV_RINTC_STRUCTURE *RintcPtr)
         ImsisBaseAddr = fdt64_to_cpu (ReadUnaligned64 ((const UINT64 *)ImsicRegProp + Idx * 2));
         ImsisBaseLen = fdt64_to_cpu (ReadUnaligned64 ((const UINT64 *)ImsicRegProp + Idx * 2 + 1));
         // Calculate the limit of number of cpu nodes this imsic can handle
-        Limit = ImsisBaseLen / ((1 << HartIdxBits) * IMSIC_MMIO_PAGE_SZ);
+        Limit = ImsisBaseLen / ((1 < GuestIdxBits) * IMSIC_MMIO_PAGE_SZ);
         for (Idx1 = 0; Idx1 < Limit && Idx2 < NumpHandle; Idx1++, Idx2++) {
           pHandle = fdt32_to_cpu (ReadUnaligned32 ((const UINT32 *)IntExtProp + Idx2 * 2));
           CpuNode = fdt_node_offset_by_phandle (FdtPointer, pHandle);
