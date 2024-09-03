@@ -306,7 +306,7 @@ MadtAplicGenerate (EFI_ACPI_6_5_RISCV_APLIC_STRUCTURE *AplicPtr)
       NumSource = fdt32_to_cpu (ReadUnaligned32 ((const UINT32 *)Prop));
       AplicTemplate.BaseAddress = AplicBaseAddr;
       AplicTemplate.BaseSize = AplicBaseSize;
-      AplicTemplate.NumSources = NumSource;
+      AplicTemplate.NumSources = NumSource + 1;
       CopyMem ((VOID *)AplicPtr, (VOID *)&AplicTemplate, sizeof (AplicTemplate));
       SizeGenerated += sizeof (AplicTemplate);
       // Should have only one APLIC
