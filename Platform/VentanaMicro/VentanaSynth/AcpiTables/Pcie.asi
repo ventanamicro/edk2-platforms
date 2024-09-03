@@ -9,6 +9,94 @@
 
 Scope (\_SB)
 {
+  Device (GSI3)
+  {
+    Name (_HID, "PNP0C0F") // _HID: Hardware ID
+    Name (_UID, "GSI3")  // _UID: Unique ID
+    Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+    {
+        Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
+        {
+          0x1F,
+        }
+    })
+    Name (_PRS, ResourceTemplate ()  // _PRS: Possible Resource Settings
+    {
+        Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
+        {
+          0x1F,
+        }
+    })
+    Method(_SRS,1,NotSerialized)
+    {
+    }
+  }
+  Device (GSI2)
+  {
+    Name (_HID, "PNP0C0F") // _HID: Hardware ID
+    Name (_UID, "GSI2")  // _UID: Unique ID
+    Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+    {
+        Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
+        {
+          0x1E,
+        }
+    })
+    Name (_PRS, ResourceTemplate ()  // _PRS: Possible Resource Settings
+    {
+        Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
+        {
+          0x1E,
+        }
+    })
+    Method(_SRS,1,NotSerialized)
+    {
+    }
+  }
+  Device (GSI1)
+  {
+    Name (_HID, "PNP0C0F") // _HID: Hardware ID
+    Name (_UID, "GSI1")  // _UID: Unique ID
+    Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+    {
+        Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
+        {
+          0x1D,
+        }
+    })
+    Name (_PRS, ResourceTemplate ()  // _PRS: Possible Resource Settings
+    {
+        Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
+        {
+          0x1D,
+        }
+    })
+    Method(_SRS,1,NotSerialized)
+    {
+    }
+  }
+  Device (GSI0)
+  {
+    Name (_HID, "PNP0C0F") // _HID: Hardware ID
+    Name (_UID, "GSI0")  // _UID: Unique ID
+    Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+    {
+        Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
+        {
+          0x1C,
+        }
+    })
+    Name (_PRS, ResourceTemplate ()  // _PRS: Possible Resource Settings
+    {
+        Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
+        {
+          0x1C,
+        }
+    })
+    Method(_SRS,1,NotSerialized)
+    {
+    }
+  }
   // RC0
   Device (PCI0) {
     //
@@ -68,22 +156,22 @@ Scope (\_SB)
       //
       // Routing for device 0-3, all functions.
       //
-      Package() {0x0000FFFF, 0, 0, 28},
-      Package() {0x0000FFFF, 1, 0, 29},
-      Package() {0x0000FFFF, 2, 0, 30},
-      Package() {0x0000FFFF, 3, 0, 31},
-      Package() {0x0001FFFF, 0, 0, 28},
-      Package() {0x0001FFFF, 1, 0, 29},
-      Package() {0x0001FFFF, 2, 0, 30},
-      Package() {0x0001FFFF, 3, 0, 31},
-      Package() {0x0002FFFF, 0, 0, 28},
-      Package() {0x0002FFFF, 1, 0, 29},
-      Package() {0x0002FFFF, 2, 0, 30},
-      Package() {0x0002FFFF, 3, 0, 31},
-      Package() {0x0003FFFF, 0, 0, 28},
-      Package() {0x0003FFFF, 1, 0, 29},
-      Package() {0x0003FFFF, 2, 0, 30},
-      Package() {0x0003FFFF, 3, 0, 31}
+      Package() {0x0000FFFF, 0, \_SB_.GSI0, 0},
+      Package() {0x0000FFFF, 1, \_SB_.GSI1, 0},
+      Package() {0x0000FFFF, 2, \_SB_.GSI2, 0},
+      Package() {0x0000FFFF, 3, \_SB_.GSI3, 0},
+      Package() {0x0001FFFF, 0, \_SB_.GSI0, 0},
+      Package() {0x0001FFFF, 1, \_SB_.GSI1, 0},
+      Package() {0x0001FFFF, 2, \_SB_.GSI2, 0},
+      Package() {0x0001FFFF, 3, \_SB_.GSI3, 0},
+      Package() {0x0002FFFF, 0, \_SB_.GSI0, 0},
+      Package() {0x0002FFFF, 1, \_SB_.GSI1, 0},
+      Package() {0x0002FFFF, 2, \_SB_.GSI2, 0},
+      Package() {0x0002FFFF, 3, \_SB_.GSI3, 0},
+      Package() {0x0003FFFF, 0, \_SB_.GSI0, 0},
+      Package() {0x0003FFFF, 1, \_SB_.GSI1, 0},
+      Package() {0x0003FFFF, 2, \_SB_.GSI2, 0},
+      Package() {0x0003FFFF, 3, \_SB_.GSI3, 0}
     })
 
     //
