@@ -21,6 +21,7 @@
   PlatformDxe.c
   AcpiMadt.c
   AcpiRhct.c
+  AcpiPptt.c
 
 [Packages]
   EmbeddedPkg/EmbeddedPkg.dec

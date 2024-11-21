@@ -45,4 +45,9 @@ AcpiInstallRhctTable (
   VOID
   );
 
+EFI_STATUS
+AcpiInstallPpttTable (
+  VOID
+  );
+
 #endif /* PLATFORM_DXE_H */

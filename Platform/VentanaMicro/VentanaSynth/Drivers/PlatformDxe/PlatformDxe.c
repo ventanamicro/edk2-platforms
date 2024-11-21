@@ -74,6 +74,10 @@ InstallAcpiOnReadyToBoot (
   Status = AcpiInstallRhctTable ();
   ASSERT_EFI_ERROR (Status);
 
+  // Install ACPI PPTT
+  Status = AcpiInstallPpttTable ();
+  ASSERT_EFI_ERROR (Status);
+
   //
   // Close the event, so it will not be signalled again.
   //
