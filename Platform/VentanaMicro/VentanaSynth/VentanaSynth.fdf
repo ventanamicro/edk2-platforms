@@ -219,6 +219,9 @@ INF  MdeModulePkg/Bus/Usb/UsbMassStorageDxe/UsbMassStorageDxe.inf
 #
 #INF  Silicon/VentanaMicro/VT1/Drivers/FixMemoryMap/FixMemoryMap.inf
 
+#IOMMU EBS
+INF   Silicon/VentanaMicro/VT1/Drivers/IommuExitDxe/IommuExitDxe.inf
+
 # X86Emulator
 #
 #INF  Silicon/VentanaMicro/X86EmulatorPkg/X86Emulator.inf

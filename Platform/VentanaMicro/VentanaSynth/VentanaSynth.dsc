@@ -212,6 +212,7 @@
 
   # X86Emulator
   Silicon/VentanaMicro/X86EmulatorPkg/X86Emulator.inf
+  Silicon/VentanaMicro/VT1/Drivers/IommuExitDxe/IommuExitDxe.inf
 
 !if $(CAPSULE_ENABLE) == TRUE
   # FMP image decriptor

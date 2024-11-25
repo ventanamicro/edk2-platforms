@@ -14,12 +14,19 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 #include <Library/DebugLib.h>
 #include <Library/HobLib.h>
+#include <Library/IoLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/BaseRiscVSbiLib.h>
 #include <Library/PcdLib.h>
 #include <Include/Library/PrePiLib.h>
 #include <libfdt.h>
 #include <Guid/FdtHob.h>
+
+STATIC EFI_GUID  mRiscVIommuInfoHobGuid = {
+  0x070702e7, 0x1c0c, 0x483f, { 0xb6, 0x00, 0x8e, 0x18, 0x70, 0x6d, 0x86, 0x13 }
+};
+
+#define IOMMU_BARE 0x1
 
 /**
   Build memory map I/O range resource HOB using the
@@ -78,6 +85,41 @@ PopulateIoResources (
   }
 }
 
+STATIC
+VOID
+CreateIommuHob (
+  VOID          *FdtBase,
+  CONST CHAR8*  Compatible
+  )
+{
+  UINT64  *Reg, IommuBase;
+  UINT64                      *IommuHobData;
+  INT32   Node, LenP;
+  UINTN Ddtp;
+
+  Node = fdt_node_offset_by_compatible (FdtBase, -1, Compatible);
+  while (Node != -FDT_ERR_NOTFOUND) {
+    Reg = (UINT64 *)fdt_getprop (FdtBase, Node, "reg", &LenP);
+    if (Reg) {
+      ASSERT (LenP == (2 * sizeof (UINT64)));
+      IommuBase = SwapBytes64 (Reg[0]);
+      Ddtp = MmioRead64 (IommuBase + 0x10);
+      DEBUG((DEBUG_INFO, "%a: Initial IOMMU DDTP = 0x%x\n", __func__, Ddtp));
+      Ddtp = IOMMU_BARE;
+      MmioWrite64 (IommuBase + 0x10, Ddtp);
+      Ddtp = MmioRead64 (IommuBase + 0x10);
+      DEBUG((DEBUG_INFO, "%a: IOMMU DDTP set to = 0x%x\n", __func__, Ddtp));
+      IommuHobData = BuildGuidHob (&mRiscVIommuInfoHobGuid, sizeof (IommuBase));
+      if (IommuHobData == NULL) {
+        DEBUG ((DEBUG_ERROR, "%a: Could not build IOMMU Hob\n", __func__));
+        return;
+      }
+
+      *IommuHobData = (UINTN)IommuBase;
+    }
+    Node = fdt_node_offset_by_compatible (FdtBase, Node, Compatible);
+  }
+}
 /**
   @retval EFI_SUCCESS            The address of FDT is passed in HOB.
           EFI_UNSUPPORTED        Can't locate FDT.
@@ -116,6 +158,8 @@ PlatformPeimInitialization (
     DEBUG ((DEBUG_ERROR, "%a: Corrupted DTB\n", __FUNCTION__));
     return EFI_UNSUPPORTED;
   }
+
+  CreateIommuHob(Base, "riscv,iommu");
 
   FdtSize  = fdt_totalsize (Base);
   FdtPages = EFI_SIZE_TO_PAGES (FdtSize);
