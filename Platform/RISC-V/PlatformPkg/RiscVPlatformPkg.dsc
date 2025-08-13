@@ -41,12 +41,15 @@
 [LibraryClasses.common]
   BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
   BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
+  BootLogoLib|MdeModulePkg/Library/BootLogoLib/BootLogoLib.inf
   CacheMaintenanceLib|MdePkg/Library/BaseCacheMaintenanceLib/BaseCacheMaintenanceLib.inf
+  CapsuleLib|MdeModulePkg/Library/DxeCapsuleLibNull/DxeCapsuleLibNull.inf
   CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/DxeCpuExceptionHandlerLib.inf
   DebugLib|MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf
   DevicePathLib|MdePkg/Library/UefiDevicePathLibDevicePathProtocol/UefiDevicePathLibDevicePathProtocol.inf
   ExtractGuidedSectionLib|MdePkg/Library/BaseExtractGuidedSectionLib/BaseExtractGuidedSectionLib.inf
   FdtLib|MdePkg/Library/BaseFdtLib/BaseFdtLib.inf
+  FileHandleLib|MdePkg/Library/UefiFileHandleLib/UefiFileHandleLib.inf
   HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
   IoLib|MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
   MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
@@ -81,9 +84,7 @@
   Platform/RISC-V/PlatformPkg/Drivers/FixedRamDiskDxe/FixedRamDiskDxe.inf
 
   Platform/RISC-V/PlatformPkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
-  Platform/RISC-V/PlatformPkg/Library/PlatformMemoryTestLibNull/PlatformMemoryTestLibNull.inf
   Platform/RISC-V/PlatformPkg/Library/RiscVPlatformSecLib/RiscVPlatformSecLib.inf
-  Platform/RISC-V/PlatformPkg/Library/PlatformUpdateProgressLibNull/PlatformUpdateProgressLibNull.inf
   Platform/RISC-V/PlatformPkg/Library/PrePiHobListPointerLib/PrePiHobListPointerLib.inf
   Platform/RISC-V/PlatformPkg/Library/ResetSystemLib/ResetSystemLib.inf
 
