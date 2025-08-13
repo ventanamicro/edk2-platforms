@@ -30,7 +30,7 @@ EFIAPI
 SecStartupPlatform (
   IN  UINTN   BootHartId,
   IN  VOID    *DeviceTreeAddress,
-  IN  UINT32  TempRamBase,
+  IN  UINT64  TempRamBase,
   IN  UINT32  TempRamSize
   );
 

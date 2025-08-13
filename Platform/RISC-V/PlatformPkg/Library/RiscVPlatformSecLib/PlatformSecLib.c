@@ -64,7 +64,7 @@ NORETURN
 EFIAPI
 SecStartup (
   IN UINT32  SizeOfRam,
-  IN UINT32  TempRamBase,
+  IN UINT64  TempRamBase,
   IN VOID    *BootFirmwareVolume
   );
 
@@ -91,7 +91,7 @@ VOID
 NORETURN
 SecPeilessStartup (
   IN UINT32  SizeOfRam,
-  IN UINT32  TempRamBase,
+  IN UINT64  TempRamBase,
   IN VOID    *BootFirmwareVolume
   )
 {
@@ -103,7 +103,7 @@ SecPeilessStartup (
 
   DEBUG ((
     DEBUG_INFO,
-    "%a(): TempRAM Base: 0x%x, TempRAM Size: 0x%x\n",
+    "%a(): TempRAM Base: 0x%lx, TempRAM Size: 0x%x\n",
     __func__,
     TempRamBase,
     SizeOfRam
@@ -126,7 +126,7 @@ SecPeilessStartup (
 
   DEBUG ((
     DEBUG_INFO,
-    "%a() BFV Base: 0x%p, StackBase: 0x%x, StackSize: 0x%x\n",
+    "%a() BFV Base: 0x%p, StackBase: 0x%lx, StackSize: 0x%x\n",
     __func__,
     BootFirmwareVolume,
     SecStackBase,
@@ -197,7 +197,7 @@ EFIAPI
 SecStartupPlatform (
   IN  UINTN   BootHartId,
   IN  VOID    *DeviceTreeAddress,
-  IN  UINT32  TempRamBase,
+  IN  UINT64  TempRamBase,
   IN  UINT32  TempRamSize
   )
 {
