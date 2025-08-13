@@ -22,34 +22,69 @@
 #
 
 [Sources]
-  PlatformData.c
-  PlatformBootManager.c
-  PlatformBootManager.h
+  PlatformBm.c
+  PlatformBm.h
   Strings.uni
 
 [Packages]
+  EmbeddedPkg/EmbeddedPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   Platform/RISC-V/PlatformPkg/RiscVPlatformPkg.dec
+  ShellPkg/ShellPkg.dec
 
 [LibraryClasses]
   BaseLib
-  PcdLib
+  BaseMemoryLib
+  BootLogoLib
+  CapsuleLib
+  DebugLib
+  DevicePathLib
+  DxeServicesLib
+  HobLib
   MemoryAllocationLib
+  PcdLib
   PrintLib
-  PlatformMemoryTestLib
-  PlatformUpdateProgressLib
+  UefiBootManagerLib
+  UefiBootServicesTableLib
+  UefiLib
+  UefiRuntimeServicesTableLib
 
-[Guids]
-  gEfiEndOfDxeEventGroupGuid
-
-[Protocols]
-  gEfiGenericMemTestProtocolGuid  ## CONSUMES
-  gEfiGraphicsOutputProtocolGuid  ## CONSUMES
+[FixedPcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
+  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate
+  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultDataBits
+  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultParity
+  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultStopBits
+  gEfiMdePkgTokenSpaceGuid.PcdDefaultTerminalType
+  gUefiRiscVPlatformPkgTokenSpaceGuid.PcdUefiShellDefaultBootEnable
 
 [Pcd]
   gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut
-  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow
-  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn
-  gEfiMdeModulePkgTokenSpaceGuid.PcdConInConnectOnDemand
+  gEfiMdeModulePkgTokenSpaceGuid.PcdBootDiscoveryPolicy
+  gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable
 
+[Guids]
+  gBootDiscoveryPolicyMgrFormsetGuid
+  gEdkiiNonDiscoverableEhciDeviceGuid
+  gEdkiiNonDiscoverableUhciDeviceGuid
+  gEdkiiNonDiscoverableXhciDeviceGuid
+  gEfiBootManagerPolicyNetworkGuid
+  gEfiBootManagerPolicyConnectAllGuid
+  gEfiFileInfoGuid
+  gEfiFileSystemInfoGuid
+  gEfiFileSystemVolumeLabelInfoIdGuid
+  gEfiEndOfDxeEventGroupGuid
+  gEfiTtyTermGuid
+  gUefiShellFileGuid
+
+[Protocols]
+  gEdkiiNonDiscoverableDeviceProtocolGuid
+  gEfiBootManagerPolicyProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiGraphicsOutputProtocolGuid
+  gEfiLoadedImageProtocolGuid
+  gEfiPciRootBridgeIoProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+  gEsrtManagementProtocolGuid
+  gPlatformBootManagerProtocolGuid

@@ -71,6 +71,13 @@
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdPciBusMin|0x0|UINT32|0x0000120a
   gUefiRiscVPlatformPkgTokenSpaceGuid.PcdPciBusMax|0x0|UINT32|0x0000120b
 
+  #
+  # Boot the Uefi Shell instead of UiApp when no valid boot option is found.
+  # This is useful in CI environment so that startup.nsh can be launched.
+  # The default value is FALSE.
+  #
+  gUefiRiscVPlatformPkgTokenSpaceGuid.PcdUefiShellDefaultBootEnable|FALSE|BOOLEAN|0x00001300
+
 [PcdsPatchableInModule]
 
 [PcdsFeatureFlag]
